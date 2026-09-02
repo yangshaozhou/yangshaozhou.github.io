@@ -8,6 +8,12 @@
         {{- partial "head/colorScheme" . -}}
         {{- partial "site-header.html" . -}}
 
+        {{- if .IsHome -}}
+            <div class="homepage-hero-shell">
+                {{- block "hero" . -}}{{- end -}}
+            </div>
+        {{- end -}}
+
         <div class="container main-container top-layout flex on-phone--column extended">
             <main class="main full-width">
                 {{- block "main" . }}{{- end }}

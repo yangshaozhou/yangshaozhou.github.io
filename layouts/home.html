@@ -1,4 +1,4 @@
-{{ define "main" }}
+{{ define "hero" }}
     {{- $posts := where .Site.RegularPages "Section" "in" .Site.Params.mainSections -}}
     {{- $posts = first 5 (sort $posts "Date" "desc") -}}
 
@@ -47,7 +47,9 @@
             </div>
         {{- end -}}
     </section>
+{{ end }}
 
+{{ define "main" }}
     <section class="article-list recent-articles">
         <header class="section-heading">
             <h2>最新文章</h2>
