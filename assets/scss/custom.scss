@@ -545,7 +545,7 @@
     grid-template-columns: 1fr 1fr;
     min-height: 340px;
     margin: 42px 0 56px;
-    border: 1px solid var(--card-separator-color);
+    border: 0;
     border-radius: 28px;
     background: var(--card-background);
     box-shadow: var(--shadow-l1);
@@ -558,6 +558,24 @@
 .article-list .latest-article-card {
     display: grid;
     flex-direction: initial;
+}
+
+.latest-article-card__wave-border {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.latest-article-card__wave-border path {
+    fill: none;
+    stroke: color-mix(in srgb, var(--accent-color) 42%, var(--card-separator-color));
+    stroke-width: 3;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
 }
 
 .latest-article-card:nth-of-type(even) {
