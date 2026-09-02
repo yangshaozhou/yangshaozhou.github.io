@@ -1,8 +1,9 @@
 baseURL = "https://yangshaozhou.github.io/"
 locale = "zh-cn"
-defaultContentLanguage = "zh-cn"
+defaultContentLanguage = "zh"
+hasCJKLanguage = true
 title = "杨少洲的博客"
-theme = "PaperMod"
+theme = "hugo-theme-stack"
 enableRobotsTXT = true
 
 [pagination]
@@ -38,21 +39,44 @@ enableRobotsTXT = true
   env = "production"
   description = "杨少洲的个人博客，记录技术、思考与生活。"
   author = "杨少洲"
-  defaultTheme = "auto"
-  ShowReadingTime = true
-  ShowCodeCopyButtons = true
-  ShowPostNavLinks = true
-  ShowBreadCrumbs = true
-  ShowToc = true
-  ShowShareButtons = true
+  mainSections = ["posts"]
+  rssFullContent = true
 
-[params.homeInfoParams]
-  Title = "你好，我是杨少洲 👋"
-  Content = "这里记录我的技术实践、学习笔记与生活思考。"
+  [params.footer]
+    since = 2026
 
-[[params.socialIcons]]
-  name = "github"
+  [params.sidebar]
+    emoji = "✍️"
+    subtitle = "记录技术、思考与生活。"
+    compact = false
+
+  [params.article]
+    toc = true
+    readingTime = true
+    headingAnchor = false
+
+  [params.widgets]
+    homepage = [
+      { type = "search" },
+      { type = "archives", params = { limit = 5 } },
+      { type = "categories", params = { limit = 10 } },
+      { type = "tag-cloud", params = { limit = 10 } }
+    ]
+    page = [{ type = "toc" }]
+
+  [params.colorScheme]
+    toggle = true
+    default = "auto"
+
+  [params.comments]
+    enabled = false
+
+[[menus.social]]
+  identifier = "github"
+  name = "GitHub"
   url = "https://github.com/yangshaozhou"
+  [menus.social.params]
+    icon = "brand-github"
 
 [caches]
   [caches.images]
