@@ -57,8 +57,39 @@
             <a href="{{ "archives/" | relURL }}">查看全部 <span aria-hidden="true">→</span></a>
         </header>
         {{- $paginator := partial "helper/paginator.html" . -}}
-        {{ range $paginator.Pages }}
-            {{ partial "article-list/default" . }}
+        {{ range $index, $post := $paginator.Pages }}
+            {{- $articleStyle := "" -}}
+            {{- with $post.Params.image -}}
+                {{- $articleStyle = printf "--article-image: url('%s');" (. | relURL) -}}
+            {{- end -}}
+            <article class="latest-article-card" style="--article-order: {{ add $index 1 }};">
+                <a class="latest-article-card__visual" href="{{ $post.RelPermalink }}" aria-label="查看 {{ $post.Title }}"{{ with $articleStyle }} style="{{ . }}"{{ end }}>
+                    <span class="latest-article-card__number" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</span>
+                    <span class="latest-article-card__visual-label">星轨记录</span>
+                </a>
+                <div class="latest-article-card__body">
+                    <div class="latest-article-card__meta">
+                        <span class="latest-article-card__meta-item">
+                            {{ partial "helper/icon" "date" }}
+                            <time datetime="{{ $post.Date.Format "2006-01-02" }}">{{ $post.Date.Format "2006年01月02日" }}</time>
+                        </span>
+                        {{- with $post.Params.categories -}}
+                            <span class="latest-article-card__meta-item">
+                                {{ partial "helper/icon" "categories" }}
+                                <span>{{ index . 0 }}</span>
+                            </span>
+                        {{- end -}}
+                        {{- with $post.Params.tags -}}
+                            <span class="latest-article-card__meta-item">
+                                {{ partial "helper/icon" "tag" }}
+                                <span>{{ index . 0 }}</span>
+                            </span>
+                        {{- end -}}
+                    </div>
+                    <h3 class="latest-article-card__title"><a href="{{ $post.RelPermalink }}">{{ $post.Title }}</a></h3>
+                    <p class="latest-article-card__summary">{{ $post.Params.subtitle | default $post.Summary | plainify | truncate 150 }}</p>
+                </div>
+            </article>
         {{ end }}
     </section>
 
