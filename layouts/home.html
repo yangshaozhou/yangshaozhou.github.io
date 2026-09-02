@@ -1,11 +1,15 @@
 {{ define "main" }}
     {{- $posts := where .Site.RegularPages "Section" "in" .Site.Params.mainSections -}}
-    {{- $posts = first 6 (sort $posts "Date" "desc") -}}
+    {{- $posts = first 5 (sort $posts "Date" "desc") -}}
 
     <section class="hero-slider" data-hero-slider aria-label="精选文章">
         <div class="hero-slider__viewport">
             {{- range $index, $post := $posts -}}
-                <article class="hero-slide{{ if eq $index 0 }} is-active{{ end }}" data-slide-index="{{ $index }}" aria-hidden="{{ if eq $index 0 }}false{{ else }}true{{ end }}">
+                {{- $slideStyle := "" -}}
+                {{- with $post.Params.image -}}
+                    {{- $slideStyle = printf "--slide-image: url('%s');" (. | relURL) -}}
+                {{- end -}}
+                <article class="hero-slide{{ if eq $index 0 }} is-active{{ end }}" data-slide-index="{{ $index }}" aria-hidden="{{ if eq $index 0 }}false{{ else }}true{{ end }}"{{ with $slideStyle }} style="{{ . }}"{{ end }}>
                     <div class="hero-slide__glow" aria-hidden="true"></div>
                     <div class="hero-slide__content">
                         <div class="hero-slide__meta">

@@ -34,7 +34,7 @@ if (slider) {
     const startAutoPlay = () => {
         stopAutoPlay();
         if (slides.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            timer = window.setInterval(() => showSlide(current + 1), 6500);
+            timer = window.setInterval(() => showSlide(current + 1), 5000);
         }
     };
 
@@ -104,4 +104,18 @@ if (searchToggle && searchForm) {
         const target = event.target as Node;
         if (!searchForm.contains(target) && !searchToggle.contains(target)) closeSearch();
     });
+}
+
+const colorSchemeToggle = document.getElementById('dark-mode-toggle');
+
+if (colorSchemeToggle) {
+    const syncColorSchemeLabel = () => {
+        const isDark = document.documentElement.dataset.scheme === 'dark';
+        const label = isDark ? '切换为浅色模式' : '切换为暗色模式';
+        colorSchemeToggle.setAttribute('aria-label', label);
+        colorSchemeToggle.setAttribute('title', label);
+    };
+
+    syncColorSchemeLabel();
+    window.addEventListener('onColorSchemeChange', syncColorSchemeLabel);
 }

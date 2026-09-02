@@ -268,6 +268,7 @@
     transform: translateX(26px) scale(1.02);
     transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.2, 0.75, 0.25, 1);
     pointer-events: none;
+    --slide-image: none;
 }
 
 .hero-slide::before,
@@ -281,6 +282,8 @@
 .hero-slide::before {
     inset: 0;
     background:
+        linear-gradient(125deg, rgba(24, 22, 47, 0.82), rgba(122, 77, 138, 0.76)),
+        var(--slide-image),
         radial-gradient(circle at 82% 20%, rgba(255, 255, 255, 0.35) 0 1px, transparent 2px),
         radial-gradient(circle at 68% 72%, rgba(255, 255, 255, 0.28) 0 1px, transparent 2px),
         radial-gradient(circle at 16% 28%, rgba(255, 255, 255, 0.45) 0 1px, transparent 2px),
@@ -290,6 +293,8 @@
 
 .hero-slide:nth-child(2)::before {
     background:
+        linear-gradient(125deg, rgba(16, 43, 63, 0.82), rgba(161, 108, 101, 0.76)),
+        var(--slide-image),
         radial-gradient(circle at 72% 24%, rgba(255, 255, 255, 0.35) 0 1px, transparent 2px),
         radial-gradient(circle at 20% 70%, rgba(255, 255, 255, 0.3) 0 1px, transparent 2px),
         linear-gradient(125deg, #102b3f 0%, #1e6374 52%, #a16c65 100%);
@@ -297,6 +302,8 @@
 
 .hero-slide:nth-child(3)::before {
     background:
+        linear-gradient(125deg, rgba(37, 32, 60, 0.82), rgba(192, 116, 97, 0.76)),
+        var(--slide-image),
         radial-gradient(circle at 75% 18%, rgba(255, 255, 255, 0.32) 0 1px, transparent 2px),
         radial-gradient(circle at 20% 34%, rgba(255, 255, 255, 0.34) 0 1px, transparent 2px),
         linear-gradient(125deg, #25203c 0%, #693d68 52%, #c07461 100%);
@@ -304,9 +311,24 @@
 
 .hero-slide:nth-child(4)::before {
     background:
+        linear-gradient(125deg, rgba(19, 45, 44, 0.82), rgba(192, 145, 88, 0.76)),
+        var(--slide-image),
         radial-gradient(circle at 84% 70%, rgba(255, 255, 255, 0.34) 0 1px, transparent 2px),
         radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.32) 0 1px, transparent 2px),
         linear-gradient(125deg, #132d2c 0%, #24615e 52%, #c09158 100%);
+}
+
+.hero-slide:nth-child(5)::before {
+    background:
+        linear-gradient(125deg, rgba(27, 30, 58, 0.82), rgba(78, 113, 157, 0.76)),
+        var(--slide-image),
+        radial-gradient(circle at 76% 25%, rgba(255, 255, 255, 0.36) 0 1px, transparent 2px),
+        radial-gradient(circle at 22% 74%, rgba(255, 255, 255, 0.28) 0 1px, transparent 2px),
+        linear-gradient(125deg, #1b1e3a 0%, #4e719d 52%, #8d6a9f 100%);
+}
+
+.hero-slide::before {
+    background-size: cover;
 }
 
 .hero-slide::after {
