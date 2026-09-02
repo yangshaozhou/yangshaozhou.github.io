@@ -1,4 +1,4 @@
-/* 星轨路迹：顶部导航、图标按钮和首页精选文章幻灯片 */
+/* 星轨路迹：顶部导航、图标按钮和首页文章幻灯片 */
 
 .site-topbar {
     position: sticky;
@@ -113,7 +113,11 @@
     align-items: center;
     gap: 8px;
     z-index: 2;
-    background: var(--body-background);
+    align-self: center;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
 }
 
 .top-icon-button,
@@ -411,16 +415,7 @@
 }
 
 .hero-slide__meta-icon,
-.hero-slide__meta-link {
-    display: inline-grid;
-    width: 28px;
-    height: 28px;
-    place-items: center;
-    flex: 0 0 auto;
-}
-
-.hero-slide__meta-icon svg,
-.hero-slide__meta-link svg {
+.hero-slide__meta-icon svg {
     width: 20px;
     height: 20px;
     stroke-width: 1.7;
@@ -442,18 +437,6 @@
 
 .hero-slide__meta time {
     white-space: nowrap;
-}
-
-.hero-slide__meta-link {
-    margin-left: 12px;
-    border-left: 1px solid rgba(255, 255, 255, 0.22);
-    color: #fff;
-    text-decoration: none;
-}
-
-.hero-slide__meta-link:hover {
-    color: #fff;
-    transform: translateY(-1px);
 }
 
 .hero-slide__title {
