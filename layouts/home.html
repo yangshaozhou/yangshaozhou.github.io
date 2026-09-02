@@ -2,7 +2,7 @@
     {{- $posts := where .Site.RegularPages "Section" "in" .Site.Params.mainSections -}}
     {{- $posts = first 5 (sort $posts "Date" "desc") -}}
 
-    <section class="hero-slider" data-hero-slider aria-label="精选文章">
+    <section class="hero-slider" data-hero-slider aria-label="首页文章轮播">
         <div class="hero-slider__viewport">
             {{- range $index, $post := $posts -}}
                 {{- $slideStyle := "" -}}
@@ -13,21 +13,23 @@
                     <div class="hero-slide__glow" aria-hidden="true"></div>
                     <div class="hero-slide__content">
                         <div class="hero-slide__meta">
-                            {{- range first 3 $post.Params.tags -}}
-                                <a href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">#{{ . }}</a>
+                            <span class="hero-slide__meta-icon" aria-hidden="true">{{ partial "helper/icon" "date" }}</span>
+                            {{- with $post.Params.tags -}}
+                                <span class="hero-slide__meta-topic">{{ delimit . " · " }}</span>
+                            {{- else -}}
+                                <span class="hero-slide__meta-topic">文章</span>
                             {{- end -}}
+                            <span class="hero-slide__meta-separator" aria-hidden="true">✦</span>
                             <time datetime="{{ $post.Date.Format "2006-01-02" }}">{{ $post.Date.Format "2006年01月02日" }}</time>
+                            <a class="hero-slide__meta-link" href="{{ $post.RelPermalink }}" aria-label="打开文章" title="打开文章">{{ partial "helper/icon" "external" }}</a>
                         </div>
-                        <p class="hero-slide__eyebrow">精选文章</p>
                         <h1 class="hero-slide__title"><a href="{{ $post.RelPermalink }}">{{ $post.Title }}</a></h1>
                         <p class="hero-slide__subtitle">{{ $post.Params.subtitle | default $post.Summary | plainify | truncate 120 }}</p>
-                        <a class="hero-slide__readmore" href="{{ $post.RelPermalink }}">阅读全文 <span aria-hidden="true">→</span></a>
                     </div>
                 </article>
             {{- else -}}
                 <article class="hero-slide is-active" aria-hidden="false">
                     <div class="hero-slide__content">
-                        <p class="hero-slide__eyebrow">星轨路迹</p>
                         <h1 class="hero-slide__title">从这里开始记录</h1>
                         <p class="hero-slide__subtitle">在文字、照片和思考之间，留下属于自己的路迹。</p>
                     </div>
