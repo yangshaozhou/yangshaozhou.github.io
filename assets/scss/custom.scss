@@ -577,6 +577,11 @@
     vector-effect: non-scaling-stroke;
 }
 
+/* Keep the clip path for content, but hide the visible gray wave stroke. */
+.latest-article-card__wave-border > path {
+    display: none;
+}
+
 .latest-article-card__content {
     position: relative;
     z-index: 1;
