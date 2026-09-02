@@ -1,0 +1,32 @@
+baseURL = "https://yangshaozhou.github.io/"
+languageCode = "zh-cn"
+title = "杨少洲的博客"
+theme = "PaperMod"
+enableRobotsTXT = true
+
+[pagination]
+  pagerSize = 10
+
+[params]
+  env = "production"
+  description = "杨少洲的个人博客，记录技术、思考与生活。"
+  author = "杨少洲"
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowCodeCopyButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowToc = true
+  ShowShareButtons = true
+
+[params.homeInfoParams]
+  Title = "你好，我是杨少洲 👋"
+  Content = "这里记录我的技术实践、学习笔记与生活思考。"
+
+[[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/yangshaozhou"
+
+[caches]
+  [caches.images]
+    dir = ":cacheDir/images"
