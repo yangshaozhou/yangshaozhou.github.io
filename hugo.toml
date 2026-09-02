@@ -1,5 +1,6 @@
 baseURL = "https://yangshaozhou.github.io/"
-languageCode = "zh-cn"
+locale = "zh-cn"
+defaultContentLanguage = "zh-cn"
 title = "杨少洲的博客"
 theme = "PaperMod"
 enableRobotsTXT = true
