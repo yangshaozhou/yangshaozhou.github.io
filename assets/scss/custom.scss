@@ -562,6 +562,11 @@
     flex-direction: initial;
 }
 
+/* The card itself is a parallelogram; its content follows this same silhouette. */
+.article-list .latest-article-card {
+    clip-path: polygon(4% 0, 100% 0, 96% 100%, 0 100%);
+}
+
 .latest-article-card__wave-border {
     position: absolute;
     inset: 0;
