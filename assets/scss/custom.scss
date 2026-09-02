@@ -46,8 +46,9 @@
 }
 
 .site-topnav {
-    flex: 1 1 auto;
+    flex: 1 1 0;
     min-width: 0;
+    overflow: hidden;
 }
 
 .site-topnav #main-menu.top-menu {
@@ -56,6 +57,8 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
+    width: 100%;
+    min-width: 0;
     overflow-x: auto;
     margin: 0;
     padding: 0;
@@ -109,6 +112,8 @@
     flex: 0 0 auto;
     align-items: center;
     gap: 8px;
+    z-index: 2;
+    background: var(--body-background);
 }
 
 .top-icon-button,
