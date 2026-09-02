@@ -1,0 +1,64 @@
+{{ define "main" }}
+    {{- $posts := where .Site.RegularPages "Section" "in" .Site.Params.mainSections -}}
+    {{- $posts = first 6 (sort $posts "Date" "desc") -}}
+
+    <section class="hero-slider" data-hero-slider aria-label="精选文章">
+        <div class="hero-slider__viewport">
+            {{- range $index, $post := $posts -}}
+                <article class="hero-slide{{ if eq $index 0 }} is-active{{ end }}" data-slide-index="{{ $index }}" aria-hidden="{{ if eq $index 0 }}false{{ else }}true{{ end }}">
+                    <div class="hero-slide__glow" aria-hidden="true"></div>
+                    <div class="hero-slide__content">
+                        <div class="hero-slide__meta">
+                            {{- range first 3 $post.Params.tags -}}
+                                <a href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">#{{ . }}</a>
+                            {{- end -}}
+                            <time datetime="{{ $post.Date.Format "2006-01-02" }}">{{ $post.Date.Format "2006年01月02日" }}</time>
+                        </div>
+                        <p class="hero-slide__eyebrow">精选文章</p>
+                        <h1 class="hero-slide__title"><a href="{{ $post.RelPermalink }}">{{ $post.Title }}</a></h1>
+                        <p class="hero-slide__subtitle">{{ $post.Params.subtitle | default $post.Summary | plainify | truncate 120 }}</p>
+                        <a class="hero-slide__readmore" href="{{ $post.RelPermalink }}">阅读全文 <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>
+            {{- else -}}
+                <article class="hero-slide is-active" aria-hidden="false">
+                    <div class="hero-slide__content">
+                        <p class="hero-slide__eyebrow">星轨路迹</p>
+                        <h1 class="hero-slide__title">从这里开始记录</h1>
+                        <p class="hero-slide__subtitle">在文字、照片和思考之间，留下属于自己的路迹。</p>
+                    </div>
+                </article>
+            {{- end -}}
+        </div>
+
+        {{- if gt (len $posts) 1 -}}
+            <div class="hero-slider__controls">
+                <button class="hero-slider__arrow" data-slider-prev type="button" aria-label="上一篇">←</button>
+                <div class="hero-slider__dots" role="tablist" aria-label="选择文章">
+                    {{- range $index, $post := $posts -}}
+                        <button class="hero-slider__dot{{ if eq $index 0 }} is-active{{ end }}" data-slider-index="{{ $index }}" type="button" role="tab" aria-label="第 {{ add $index 1 }} 篇文章" aria-selected="{{ if eq $index 0 }}true{{ else }}false{{ end }}"></button>
+                    {{- end -}}
+                </div>
+                <button class="hero-slider__arrow" data-slider-next type="button" aria-label="下一篇">→</button>
+            </div>
+        {{- end -}}
+    </section>
+
+    <section class="article-list recent-articles">
+        <header class="section-heading">
+            <h2>最新文章</h2>
+            <a href="{{ "archives/" | relURL }}">查看全部 <span aria-hidden="true">→</span></a>
+        </header>
+        {{- $paginator := partial "helper/paginator.html" . -}}
+        {{ range $paginator.Pages }}
+            {{ partial "article-list/default" . }}
+        {{ end }}
+    </section>
+
+    {{- partial "pagination.html" . -}}
+    {{- partial "footer/footer" . -}}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
+{{ end }}

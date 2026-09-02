@@ -2,7 +2,7 @@ baseURL = "https://yangshaozhou.github.io/"
 locale = "zh-cn"
 defaultContentLanguage = "zh"
 hasCJKLanguage = true
-title = "杨少洲的博客"
+title = "星轨路迹"
 theme = "hugo-theme-stack"
 enableRobotsTXT = true
 
@@ -14,30 +14,35 @@ enableRobotsTXT = true
     name = "首页"
     pageRef = "/"
     weight = 10
+    params = { icon = "home" }
 
   [[menus.main]]
     name = "文章归档"
     pageRef = "/archives/"
     weight = 20
+    params = { icon = "archives" }
 
   [[menus.main]]
     name = "照片"
     pageRef = "/photos/"
     weight = 30
+    params = { icon = "photo" }
 
   [[menus.main]]
     name = "箴言"
     pageRef = "/quotes/"
     weight = 40
+    params = { icon = "quote" }
 
   [[menus.main]]
     name = "关于我"
     pageRef = "/about/"
     weight = 50
+    params = { icon = "user" }
 
 [params]
   env = "production"
-  description = "杨少洲的个人博客，记录技术、思考与生活。"
+  description = "星轨路迹，记录技术、思考与生活。"
   author = "杨少洲"
   mainSections = ["posts"]
   rssFullContent = true
@@ -46,8 +51,8 @@ enableRobotsTXT = true
     since = 2026
 
   [params.sidebar]
-    emoji = "✍️"
-    subtitle = "记录技术、思考与生活。"
+    emoji = "✦"
+    subtitle = "在星轨之间，记录脚下的路迹。"
     compact = false
 
   [params.article]
@@ -57,12 +62,15 @@ enableRobotsTXT = true
 
   [params.widgets]
     homepage = [
-      { type = "search" },
       { type = "archives", params = { limit = 5 } },
       { type = "categories", params = { limit = 10 } },
       { type = "tag-cloud", params = { limit = 10 } }
     ]
-    page = [{ type = "toc" }]
+    page = [
+      { type = "archives", params = { limit = 5 } },
+      { type = "categories", params = { limit = 10 } },
+      { type = "tag-cloud", params = { limit = 10 } }
+    ]
 
   [params.colorScheme]
     toggle = true
