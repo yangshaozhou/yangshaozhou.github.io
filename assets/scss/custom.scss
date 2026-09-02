@@ -577,7 +577,7 @@
     align-items: flex-end;
     overflow: hidden;
     padding: 34px;
-    border-radius: 28px 0 0 28px;
+    border-radius: 0;
     color: rgba(255, 255, 255, 0.88);
     --article-image: none;
     background:
@@ -592,7 +592,7 @@
 .latest-article-card:nth-of-type(2n) .latest-article-card__visual {
     grid-column: 2;
     grid-row: 1;
-    border-radius: 0 28px 28px 0;
+    border-radius: 0;
     background:
         var(--article-image),
         radial-gradient(circle at 70% 25%, rgba(255, 255, 255, 0.3) 0 2px, transparent 3px),
@@ -796,7 +796,7 @@
     .latest-article-card:nth-of-type(2n) .latest-article-card__visual {
         min-height: 170px;
         flex: none;
-        border-radius: 28px 28px 0 0;
+        border-radius: 0;
     }
 
     .latest-article-card__body,
