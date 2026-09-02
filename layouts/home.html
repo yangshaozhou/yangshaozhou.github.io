@@ -95,7 +95,7 @@
                         {{- end -}}
                     </div>
                     <h3 class="latest-article-card__title"><a href="{{ $post.RelPermalink }}">{{ $post.Title }}</a></h3>
-                    <p class="latest-article-card__summary">{{ $post.Params.subtitle | default $post.Summary | plainify | truncate 150 }}</p>
+                    <p class="latest-article-card__summary">{{ $post.Summary | default $post.Params.subtitle | plainify | truncate 150 }}</p>
                 </div>
                 </div>
             </article>
