@@ -541,8 +541,7 @@
 
 .latest-article-card {
     position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: block;
     min-height: 340px;
     margin: 42px 0 56px;
     border: 0;
@@ -556,7 +555,7 @@
 
 /* Override Stack's default `.article-list article` column layout. */
 .article-list .latest-article-card {
-    display: grid;
+    display: block;
     flex-direction: initial;
 }
 
@@ -576,6 +575,16 @@
     stroke-width: 3;
     stroke-linejoin: round;
     vector-effect: non-scaling-stroke;
+}
+
+.latest-article-card__content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 340px;
+    overflow: hidden;
+    background: var(--card-background);
 }
 
 .latest-article-card:nth-of-type(even) {
@@ -798,8 +807,7 @@
 
     .latest-article-card,
     .latest-article-card:nth-of-type(even) {
-        display: flex;
-        flex-direction: column;
+        display: block;
         min-height: 0;
         margin: 28px 0 38px;
         transform: none;
@@ -815,6 +823,12 @@
         min-height: 170px;
         flex: none;
         border-radius: 0;
+    }
+
+    .latest-article-card__content {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
     }
 
     .latest-article-card__body,
