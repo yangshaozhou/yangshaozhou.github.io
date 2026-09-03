@@ -79,6 +79,14 @@ enableRobotsTXT = true
   [params.comments]
     enabled = false
 
+  [params.profile]
+    name = "杨少洲"
+    motto = "慢一点，才能听见内心真正想去的方向。"
+    subtitle = "在星轨之间，记录脚下的路迹。"
+    avatar = "images/avatar.svg"
+    buttonText = "继续记录"
+    buttonUrl = "/archives/"
+
 [[menus.social]]
   identifier = "github"
   name = "GitHub"

@@ -1,0 +1,33 @@
+{{- $posts := where .Site.RegularPages "Section" "in" .Site.Params.mainSections -}}
+{{- $articleCount := len $posts -}}
+{{- $tagCount := len .Site.Taxonomies.tags -}}
+{{- $categoryCount := len .Site.Taxonomies.categories -}}
+
+<section class="profile-card" aria-label="个人信息">
+    <div class="profile-card__avatar-wrap">
+        <img class="profile-card__avatar" src="{{ .Site.Params.profile.avatar | relURL }}" alt="{{ .Site.Params.profile.name }}的头像" width="112" height="112" loading="lazy">
+    </div>
+    <h2 class="profile-card__name">{{ .Site.Params.profile.name }}</h2>
+    <p class="profile-card__subtitle">{{ .Site.Params.profile.subtitle }}</p>
+    <p class="profile-card__motto">{{ .Site.Params.profile.motto }}</p>
+
+    <div class="profile-card__stats" aria-label="博客统计">
+        <a href="{{ "posts/" | relURL }}">
+            <strong>{{ $articleCount }}</strong>
+            <span>文章</span>
+        </a>
+        <a href="{{ "tags/" | relURL }}">
+            <strong>{{ $tagCount }}</strong>
+            <span>标签</span>
+        </a>
+        <a href="{{ "categories/" | relURL }}">
+            <strong>{{ $categoryCount }}</strong>
+            <span>分类</span>
+        </a>
+    </div>
+
+    <a class="profile-card__action" href="{{ .Site.Params.profile.buttonUrl | relURL }}">
+        <span aria-hidden="true">✦</span>
+        <span>{{ .Site.Params.profile.buttonText }}</span>
+    </a>
+</section>
