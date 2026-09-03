@@ -864,6 +864,67 @@
     transform: translateY(-2px);
 }
 
+.sidebar-latest-posts {
+    padding: 28px 24px 20px;
+    border-radius: 24px;
+    background: var(--card-background);
+    box-shadow: var(--shadow-l2);
+}
+
+.sidebar-latest-posts__heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    color: var(--card-text-color-main);
+}
+
+.sidebar-latest-posts__heading svg {
+    width: 32px;
+    height: 32px;
+    stroke-width: 1.8;
+}
+
+.sidebar-latest-posts__heading h2 {
+    margin: 0;
+    font-size: 2.3rem;
+    font-weight: 700;
+}
+
+.sidebar-latest-posts__list {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-latest-post {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 18px 4px;
+    color: var(--card-text-color-main);
+    text-decoration: none;
+}
+
+.sidebar-latest-post + .sidebar-latest-post {
+    border-top: 1px dashed var(--card-separator-color);
+}
+
+.sidebar-latest-post:hover .sidebar-latest-post__title {
+    color: var(--accent-color);
+}
+
+.sidebar-latest-post__title {
+    color: var(--card-text-color-main);
+    font-size: 1.65rem;
+    line-height: 1.55;
+    transition: color 0.25s ease;
+}
+
+.sidebar-latest-post time {
+    color: var(--card-text-color-tertiary);
+    font-size: 1.35rem;
+}
+
 /* Keep the sawtooth outer contour and shear the whole card as one frame. */
 .article-list .latest-article-card {
     clip-path: polygon(

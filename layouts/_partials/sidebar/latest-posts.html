@@ -1,0 +1,17 @@
+{{- $posts := where .Site.RegularPages "Section" "in" .Site.Params.mainSections -}}
+{{- $posts = first 5 (sort $posts "Date" "desc") -}}
+
+<section class="sidebar-latest-posts" aria-label="最新文章">
+    <header class="sidebar-latest-posts__heading">
+        {{ partial "helper/icon" "clock" }}
+        <h2>最新文章</h2>
+    </header>
+    <div class="sidebar-latest-posts__list">
+        {{- range $posts -}}
+            <a class="sidebar-latest-post" href="{{ .RelPermalink }}">
+                <span class="sidebar-latest-post__title">{{ .Title }}</span>
+                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006年01月02日" }}</time>
+            </a>
+        {{- end -}}
+    </div>
+</section>
