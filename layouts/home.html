@@ -62,7 +62,7 @@
             {{- with $post.Params.image -}}
                 {{- $articleStyle = printf "--article-image: url('%s');" (. | relURL) -}}
             {{- end -}}
-            <article class="latest-article-card">
+            <article class="latest-article-card" style="clip-path: url(#latest-card-clip-{{ $index }}); -webkit-clip-path: url(#latest-card-clip-{{ $index }});">
                 <svg class="latest-article-card__wave-border" viewBox="0 0 1000 400" preserveAspectRatio="none" aria-hidden="true" focusable="false">
                     <defs>
                         <clipPath id="latest-card-clip-{{ $index }}" clipPathUnits="objectBoundingBox">
