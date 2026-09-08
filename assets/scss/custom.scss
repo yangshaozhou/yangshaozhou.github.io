@@ -925,6 +925,177 @@
     font-size: 1.35rem;
 }
 
+.archive-intro-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 28px;
+    padding: 30px 34px;
+    border-radius: 24px;
+    color: var(--card-text-color-main);
+    background: var(--card-background);
+    box-shadow: var(--shadow-l2);
+}
+
+.archive-intro-card__icon {
+    display: grid;
+    width: 56px;
+    height: 56px;
+    place-items: center;
+    border-radius: 18px;
+    color: var(--accent-color-text);
+    background: var(--accent-color);
+}
+
+.archive-intro-card__icon svg {
+    width: 30px;
+    height: 30px;
+}
+
+.archive-intro-card__eyebrow {
+    margin: 0 0 5px;
+    color: var(--card-text-color-tertiary);
+    font-size: 1.25rem;
+    letter-spacing: 0.08em;
+}
+
+.archive-intro-card h1 {
+    margin: 0;
+    font-size: 3rem;
+}
+
+.archive-intro-card p:last-child {
+    margin: 6px 0 0;
+    color: var(--card-text-color-secondary);
+    font-size: 1.45rem;
+}
+
+.archive-intro-card > strong {
+    color: var(--accent-color);
+    font-size: 2rem;
+    white-space: nowrap;
+}
+
+.archive-year-list {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.archive-year-card {
+    overflow: hidden;
+    border-radius: 24px;
+    background: var(--card-background);
+    box-shadow: var(--shadow-l1);
+}
+
+.archive-year-card__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 24px 30px;
+    border-bottom: 1px solid var(--card-separator-color);
+}
+
+.archive-year-card__header a {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.archive-year-card__year {
+    color: var(--accent-color);
+    font-size: 2.8rem;
+    font-weight: 800;
+}
+
+.archive-year-card__label,
+.archive-year-card__count {
+    color: var(--card-text-color-tertiary);
+    font-size: 1.35rem;
+}
+
+.archive-entry-card {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 24px;
+    padding: 26px 30px;
+}
+
+.archive-entry-card + .archive-entry-card {
+    border-top: 1px dashed var(--card-separator-color);
+}
+
+.archive-entry-card__date {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--accent-color);
+    text-align: center;
+}
+
+.archive-entry-card__date span {
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.archive-entry-card__date small {
+    margin-top: 7px;
+    color: var(--card-text-color-tertiary);
+    font-size: 1.2rem;
+}
+
+.archive-entry-card__body {
+    min-width: 0;
+}
+
+.archive-entry-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+    margin-bottom: 8px;
+    color: var(--card-text-color-tertiary);
+    font-size: 1.3rem;
+}
+
+.archive-entry-card__meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.archive-entry-card__meta svg {
+    width: 17px;
+    height: 17px;
+}
+
+.archive-entry-card h2 {
+    margin: 0;
+    font-size: 2.25rem;
+    line-height: 1.35;
+}
+
+.archive-entry-card h2 a {
+    color: var(--card-text-color-main);
+    text-decoration: none;
+}
+
+.archive-entry-card h2 a:hover {
+    color: var(--accent-color);
+}
+
+.archive-entry-card p {
+    margin: 9px 0 0;
+    color: var(--card-text-color-secondary);
+    font-size: 1.45rem;
+    line-height: 1.7;
+}
+
 /* Keep the sawtooth outer contour and shear the whole card as one frame. */
 .article-list .latest-article-card {
     clip-path: polygon(
@@ -1071,6 +1242,30 @@
 
     .latest-article-card__summary {
         font-size: 1.5rem;
+    }
+
+    .archive-intro-card {
+        grid-template-columns: auto 1fr;
+        padding: 24px 20px;
+    }
+
+    .archive-intro-card > strong {
+        grid-column: 2;
+        font-size: 1.7rem;
+    }
+
+    .archive-entry-card {
+        grid-template-columns: 64px 1fr;
+        gap: 16px;
+        padding: 22px 20px;
+    }
+
+    .archive-entry-card__date span {
+        font-size: 2.6rem;
+    }
+
+    .archive-entry-card h2 {
+        font-size: 1.9rem;
     }
 }
 

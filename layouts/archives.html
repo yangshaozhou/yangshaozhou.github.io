@@ -1,0 +1,59 @@
+{{ define "body-class" }}template-archives{{ end }}
+
+{{ define "main" }}
+    {{- $posts := where .Site.RegularPages "Section" "in" .Site.Params.mainSections -}}
+
+    <header class="archive-intro-card">
+        <div class="archive-intro-card__icon">{{ partial "helper/icon" "archives" }}</div>
+        <div>
+            <p class="archive-intro-card__eyebrow">星轨路迹 · 内容时间线</p>
+            <h1>文章归档</h1>
+            <p>把写过的文字按时间收好，方便再次找到那些值得回看的思考。</p>
+        </div>
+        <strong>{{ len $posts }} 篇文章</strong>
+    </header>
+
+    <section class="archive-year-list" aria-label="文章归档列表">
+        {{ range $posts.GroupByDate "2006" }}
+            {{ $id := lower (replace .Key " " "-") }}
+            <section class="archive-year-card" id="{{ $id }}">
+                <header class="archive-year-card__header">
+                    <a href="{{ $.RelPermalink }}#{{ $id }}">
+                        <span class="archive-year-card__year">{{ .Key }}</span>
+                        <span class="archive-year-card__label">年度文章</span>
+                    </a>
+                    <span class="archive-year-card__count">{{ len .Pages }} 篇</span>
+                </header>
+
+                <div class="archive-entry-list">
+                    {{ range .Pages }}
+                        <article class="archive-entry-card">
+                            <time class="archive-entry-card__date" datetime="{{ .Date.Format "2006-01-02" }}">
+                                <span>{{ .Date.Format "01" }}</span>
+                                <small>{{ .Date.Format "2006年01月" }}</small>
+                            </time>
+                            <div class="archive-entry-card__body">
+                                <div class="archive-entry-card__meta">
+                                    {{ with .Params.categories }}
+                                        <span>{{ partial "helper/icon" "categories" }}{{ index . 0 }}</span>
+                                    {{ end }}
+                                    {{ with .Params.tags }}
+                                        <span>{{ partial "helper/icon" "tag" }}{{ index . 0 }}</span>
+                                    {{ end }}
+                                </div>
+                                <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+                                <p>{{ .Summary | plainify | truncate 150 }}</p>
+                            </div>
+                        </article>
+                    {{ end }}
+                </div>
+            </section>
+        {{ end }}
+    </section>
+
+    {{ partialCached "footer/footer" . }}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "page") }}
+{{ end }}
