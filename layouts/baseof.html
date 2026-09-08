@@ -4,7 +4,7 @@
         {{- partial "head/head.html" . -}}
         {{- block "head" . -}}{{ end }}
     </head>
-    <body class="{{ block `body-class` . }}{{ end }}">
+    <body class="{{ block `body-class` . }}{{ end }}{{ if .IsHome }} homepage-shell{{ end }}">
         {{- partial "head/colorScheme" . -}}
         {{- partial "site-header.html" . -}}
 
