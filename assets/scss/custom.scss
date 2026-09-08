@@ -925,6 +925,68 @@
     font-size: 1.35rem;
 }
 
+/* Turn archive, category, and tag modules into the same card language. */
+.top-layout .right-sidebar {
+    gap: 22px;
+}
+
+.top-layout .right-sidebar > .widget {
+    gap: 12px;
+    padding: 24px;
+    border-radius: 24px;
+    background: var(--card-background);
+    box-shadow: var(--shadow-l2);
+}
+
+.top-layout .right-sidebar > .widget .widget-icon {
+    margin-bottom: 0;
+}
+
+.top-layout .right-sidebar > .widget .widget-icon svg {
+    width: 34px;
+    height: 34px;
+    stroke-width: 1.7;
+}
+
+.top-layout .right-sidebar > .widget .widget-title {
+    margin: 0;
+    font-size: 2.25rem;
+}
+
+.top-layout .right-sidebar > .widget .widget-title a {
+    color: var(--card-text-color-main);
+    text-decoration: none;
+}
+
+.top-layout .right-sidebar > .widget.archives .widget-archive--list {
+    box-shadow: none;
+    background: transparent;
+}
+
+.top-layout .right-sidebar > .widget.archives .archives-year a {
+    padding: 16px 6px;
+    font-size: 1.55rem;
+}
+
+.top-layout .right-sidebar > .widget.tagCloud .tagCloud-tags {
+    gap: 10px;
+}
+
+.top-layout .right-sidebar > .widget.tagCloud .tagCloud-tags a {
+    padding: 9px 16px;
+    border: 1px solid var(--card-separator-color);
+    border-radius: 12px;
+    color: var(--card-text-color-main);
+    background: var(--body-background);
+    font-size: 1.45rem;
+    text-decoration: none;
+}
+
+.top-layout .right-sidebar > .widget.tagCloud .tagCloud-tags a:hover {
+    color: var(--accent-color);
+    background: var(--card-background-selected);
+}
+
 .archive-intro-card {
     display: grid;
     grid-template-columns: auto 1fr auto;
