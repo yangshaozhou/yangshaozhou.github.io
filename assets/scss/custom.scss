@@ -3,7 +3,7 @@
 body.homepage-shell {
     background-color: var(--body-background);
     background-image:
-        linear-gradient(rgba(245, 245, 250, 0.62), rgba(245, 245, 250, 0.72)),
+        linear-gradient(rgba(245, 245, 250, 0.42), rgba(245, 245, 250, 0.54)),
         url("/images/home-background.png");
     background-attachment: fixed;
     background-position: center top;
@@ -12,13 +12,13 @@ body.homepage-shell {
 }
 
 body.homepage-shell .site-topbar {
-    background: color-mix(in srgb, var(--body-background) 70%, transparent);
+    background: color-mix(in srgb, var(--body-background) 58%, transparent);
     backdrop-filter: blur(18px);
 }
 
 [data-scheme="dark"] body.homepage-shell {
     background-image:
-        linear-gradient(rgba(18, 20, 34, 0.68), rgba(18, 20, 34, 0.78)),
+        linear-gradient(rgba(18, 20, 34, 0.5), rgba(18, 20, 34, 0.62)),
         url("/images/home-background.png");
 }
 
@@ -631,7 +631,7 @@ body.homepage-shell .site-topbar {
 .home-reference-intro {
     padding: 56px var(--container-padding) 42px;
     border-bottom: 1px solid var(--card-separator-color);
-    background: color-mix(in srgb, var(--card-background) 76%, transparent);
+    background: color-mix(in srgb, var(--card-background) 64%, transparent);
     backdrop-filter: blur(12px);
 }
 
@@ -691,7 +691,7 @@ body.homepage-shell .site-topbar {
 .home-reference-feed {
     position: relative;
     border-radius: 24px;
-    background: color-mix(in srgb, var(--card-background) 82%, transparent);
+    background: color-mix(in srgb, var(--card-background) 70%, transparent);
     backdrop-filter: blur(14px);
     box-shadow: var(--shadow-l1);
     overflow: hidden;
@@ -870,7 +870,7 @@ body.homepage-shell .site-topbar {
     grid-template-columns: 1fr 1fr;
     min-height: 340px;
     overflow: hidden;
-    background: color-mix(in srgb, var(--card-background) 88%, transparent);
+    background: color-mix(in srgb, var(--card-background) 78%, transparent);
     clip-path: none !important;
     -webkit-clip-path: none !important;
 }
@@ -1275,7 +1275,7 @@ body.homepage-shell .site-topbar {
 .homepage-shell .profile-card,
 .homepage-shell .sidebar-latest-posts,
 .homepage-shell .top-layout .right-sidebar > .widget {
-    background: color-mix(in srgb, var(--card-background) 82%, transparent);
+    background: color-mix(in srgb, var(--card-background) 72%, transparent);
     backdrop-filter: blur(14px);
 }
 
