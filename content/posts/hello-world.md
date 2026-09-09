@@ -2,6 +2,7 @@
 title: "你好，世界"
 date: 2026-09-02T10:00:00+08:00
 draft: false
+image: "images/posts/hello-world.png"
 tags: ["随笔", "博客"]
 categories: ["生活"]
 summary: "这是我的第一篇 Hugo 博客文章，也记录了我开始建立个人数字空间的起点。"
