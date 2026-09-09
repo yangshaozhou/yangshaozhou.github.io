@@ -2,58 +2,166 @@
 
 {{ define "main" }}
     {{- $posts := where .Site.RegularPages "Section" "in" .Site.Params.mainSections -}}
+    {{- $posts = sort $posts "Date" "desc" -}}
+    {{- $postCount := len $posts -}}
+    {{- $anchorDate := now -}}
+    {{- if gt $postCount 0 -}}
+        {{- $anchorDate = (index $posts 0).Date -}}
+    {{- end -}}
 
-    <header class="archive-intro-card">
-        <div class="archive-intro-card__icon">{{ partial "helper/icon" "archives" }}</div>
-        <div>
-            <p class="archive-intro-card__eyebrow">星轨路迹 · 内容时间线</p>
-            <h1>文章归档</h1>
-            <p>把写过的文字按时间收好，方便再次找到那些值得回看的思考。</p>
-        </div>
-        <strong>{{ len $posts }} 篇文章</strong>
-    </header>
+    {{- $chartData := slice -}}
+    {{- $chartMax := 1 -}}
+    {{- range $index := seq 0 11 -}}
+        {{- $monthOffset := sub $index 11 -}}
+        {{- $monthDate := $anchorDate.AddDate 0 $monthOffset 0 -}}
+        {{- $monthKey := $monthDate.Format "2006-01" -}}
+        {{- $monthCount := 0 -}}
+        {{- range $posts -}}
+            {{- if eq (.Date.Format "2006-01") $monthKey -}}
+                {{- $monthCount = add $monthCount 1 -}}
+            {{- end -}}
+        {{- end -}}
+        {{- if gt $monthCount $chartMax -}}{{- $chartMax = $monthCount -}}{{- end -}}
+        {{- $chartData = $chartData | append (dict "Label" $monthKey "Count" $monthCount) -}}
+    {{- end -}}
 
-    <section class="archive-year-list" aria-label="文章归档列表">
-        {{ range $posts.GroupByDate "2006" }}
-            {{ $id := lower (replace .Key " " "-") }}
-            <section class="archive-year-card" id="{{ $id }}">
-                <header class="archive-year-card__header">
-                    <a href="{{ $.RelPermalink }}#{{ $id }}">
-                        <span class="archive-year-card__year">{{ .Key }}</span>
-                        <span class="archive-year-card__label">年度文章</span>
-                    </a>
-                    <span class="archive-year-card__count">{{ len .Pages }} 篇</span>
-                </header>
+    {{- $linePoints := "" -}}
+    {{- range $index, $month := $chartData -}}
+        {{- $pointX := add 56 (mul $index 80) -}}
+        {{- $ratio := div (float $month.Count) (float $chartMax) -}}
+        {{- $pointY := sub 188 (mul $ratio 140) -}}
+        {{- $linePoints = printf "%s %.2f,%.2f" $linePoints (float $pointX) $pointY -}}
+    {{- end -}}
+    {{- $areaPoints := printf "56,188 %s 936,188" $linePoints -}}
 
-                <div class="archive-entry-list">
-                    {{ range .Pages }}
-                        <article class="archive-entry-card">
-                            <time class="archive-entry-card__date" datetime="{{ .Date.Format "2006-01-02" }}">
-                                <span>{{ .Date.Format "01" }}</span>
-                                <small>{{ .Date.Format "2006年01月" }}</small>
-                            </time>
-                            <div class="archive-entry-card__body">
-                                <div class="archive-entry-card__meta">
-                                    {{ with .Params.categories }}
-                                        <span>{{ partial "helper/icon" "categories" }}{{ index . 0 }}</span>
-                                    {{ end }}
-                                    {{ with .Params.tags }}
-                                        <span>{{ partial "helper/icon" "tag" }}{{ index . 0 }}</span>
-                                    {{ end }}
-                                </div>
-                                <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-                                <p>{{ .Summary | plainify | truncate 150 }}</p>
-                            </div>
-                        </article>
-                    {{ end }}
+    <section class="archive-publish-chart" aria-labelledby="archive-chart-title">
+        <header class="archive-publish-chart__header">
+            <div>
+                <span class="archive-publish-chart__icon" aria-hidden="true">{{ partial "helper/icon" "archives" }}</span>
+                <div>
+                    <p>POSTING ACTIVITY</p>
+                    <h1 id="archive-chart-title">文章发布统计</h1>
                 </div>
-            </section>
-        {{ end }}
+            </div>
+            <span>最近 12 个月</span>
+        </header>
+
+        <div class="archive-publish-chart__viewport">
+            <svg class="archive-publish-chart__svg" viewBox="0 0 976 232" role="img" aria-labelledby="archive-chart-svg-title archive-chart-svg-description">
+                <title id="archive-chart-svg-title">最近十二个月文章发布数量</title>
+                <desc id="archive-chart-svg-description">最高单月发布 {{ $chartMax }} 篇，共收录 {{ $postCount }} 篇文章。</desc>
+                <defs>
+                    <linearGradient id="archive-chart-fill" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#53e1cb" stop-opacity="0.9" />
+                        <stop offset="100%" stop-color="#4bbbd8" stop-opacity="0.16" />
+                    </linearGradient>
+                    <linearGradient id="archive-chart-line" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#54dcca" />
+                        <stop offset="100%" stop-color="#3caed0" />
+                    </linearGradient>
+                </defs>
+
+                <g class="archive-publish-chart__grid" aria-hidden="true">
+                    <line x1="56" y1="48" x2="936" y2="48" />
+                    <line x1="56" y1="83" x2="936" y2="83" />
+                    <line x1="56" y1="118" x2="936" y2="118" />
+                    <line x1="56" y1="153" x2="936" y2="153" />
+                    <line x1="56" y1="188" x2="936" y2="188" />
+                </g>
+                <text class="archive-publish-chart__axis-title" x="0" y="22">文章篇数</text>
+                <text class="archive-publish-chart__axis-label" x="38" y="52">{{ $chartMax }}</text>
+                <text class="archive-publish-chart__axis-label" x="38" y="192">0</text>
+                <line class="archive-publish-chart__axis" x1="56" y1="35" x2="56" y2="188" />
+                <line class="archive-publish-chart__axis" x1="56" y1="188" x2="948" y2="188" />
+                <polygon class="archive-publish-chart__area" points="{{ $areaPoints }}" />
+                <polyline class="archive-publish-chart__line" points="{{ $linePoints }}" />
+
+                {{- range $index, $month := $chartData -}}
+                    {{- $pointX := add 56 (mul $index 80) -}}
+                    {{- $ratio := div (float $month.Count) (float $chartMax) -}}
+                    {{- $pointY := sub 188 (mul $ratio 140) -}}
+                    <g class="archive-publish-chart__point">
+                        <title>{{ $month.Label }}：{{ $month.Count }} 篇</title>
+                        <circle cx="{{ $pointX }}" cy="{{ $pointY }}" r="5" />
+                        <text x="{{ $pointX }}" y="216" text-anchor="middle">{{ $month.Label }}</text>
+                    </g>
+                {{- end -}}
+            </svg>
+        </div>
+    </section>
+
+    {{- $zodiacs := dict
+        "0" (dict "name" "猴" "symbol" "🐒")
+        "1" (dict "name" "鸡" "symbol" "🐓")
+        "2" (dict "name" "狗" "symbol" "🐕")
+        "3" (dict "name" "猪" "symbol" "🐖")
+        "4" (dict "name" "鼠" "symbol" "🐀")
+        "5" (dict "name" "牛" "symbol" "🐂")
+        "6" (dict "name" "虎" "symbol" "🐅")
+        "7" (dict "name" "兔" "symbol" "🐇")
+        "8" (dict "name" "龙" "symbol" "🐉")
+        "9" (dict "name" "蛇" "symbol" "🐍")
+        "10" (dict "name" "马" "symbol" "🐎")
+        "11" (dict "name" "羊" "symbol" "🐐")
+    -}}
+
+    <section class="archive-timeline" aria-labelledby="archive-overview-title">
+        <header class="archive-timeline__summary">
+            <span class="archive-timeline__summary-marker" aria-hidden="true"></span>
+            <p>ARCHIVE</p>
+            <h2 id="archive-overview-title">文章总览 <span>— {{ $postCount }}</span></h2>
+        </header>
+
+        <div class="archive-timeline__years">
+            {{- range $posts.GroupByDate "2006" -}}
+                {{- $yearID := printf "year-%s" .Key -}}
+                {{- $zodiacIndex := printf "%d" (mod (int .Key) 12) -}}
+                {{- $zodiac := index $zodiacs $zodiacIndex -}}
+                <section class="archive-timeline__year" id="{{ $yearID }}">
+                    <header class="archive-timeline__year-header">
+                        <span class="archive-timeline__marker" aria-hidden="true"></span>
+                        <a href="{{ $.RelPermalink }}#{{ $yearID }}">{{ .Key }}</a>
+                        <span class="archive-timeline__zodiac" title="{{ .Key }} 年生肖：{{ $zodiac.name }}">
+                            <span aria-hidden="true">{{ $zodiac.symbol }}</span>
+                            {{ $zodiac.name }}年
+                        </span>
+                        <small>{{ len .Pages }} 篇</small>
+                    </header>
+
+                    <div class="archive-timeline__entries">
+                        {{- range .Pages -}}
+                            {{- $cover := "images/home-background.png" -}}
+                            {{- with .Params.image -}}
+                                {{- $cover = . -}}
+                            {{- else -}}
+                                {{- with .Params.images -}}
+                                    {{- $cover = index . 0 -}}
+                                {{- end -}}
+                            {{- end -}}
+                            <article class="archive-timeline__entry">
+                                <span class="archive-timeline__marker" aria-hidden="true"></span>
+                                <a class="archive-timeline__cover" href="{{ .RelPermalink }}" aria-label="阅读《{{ .Title }}》">
+                                    <img src="{{ $cover | relURL }}" alt="" loading="lazy" width="260" height="170">
+                                </a>
+                                <div class="archive-timeline__entry-content">
+                                    <time datetime="{{ .Date.Format "2006-01-02" }}">
+                                        {{ partial "helper/icon" "date" }}
+                                        {{ .Date.Format "2006-01-02" }}
+                                    </time>
+                                    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                                    {{- with .Summary -}}
+                                        <p>{{ . | plainify | truncate 120 }}</p>
+                                    {{- end -}}
+                                </div>
+                            </article>
+                        {{- end -}}
+                    </div>
+                </section>
+            {{- else -}}
+                <p class="archive-timeline__empty">还没有文章，第一篇记录正在路上。</p>
+            {{- end -}}
+        </div>
     </section>
 
     {{ partialCached "footer/footer" . }}
-{{ end }}
-
-{{ define "right-sidebar" }}
-    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "page") }}
 {{ end }}
