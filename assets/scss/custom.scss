@@ -1311,13 +1311,25 @@ body.template-archives {
     max-width: none;
 }
 
+.archive-surface {
+    width: 88%;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--card-separator-color) 72%, transparent);
+    border-radius: 30px;
+    background: color-mix(in srgb, var(--card-background) 57%, transparent);
+    box-shadow: 0 28px 90px rgba(37, 54, 82, 0.13);
+    backdrop-filter: blur(20px) saturate(1.05);
+}
+
 .archive-publish-chart {
     padding: 28px 34px 24px;
-    border: 1px solid color-mix(in srgb, var(--card-separator-color) 72%, transparent);
-    border-radius: 26px;
-    background: color-mix(in srgb, var(--card-background) 76%, transparent);
-    box-shadow: 0 22px 70px rgba(37, 54, 82, 0.1);
-    backdrop-filter: blur(18px);
+    border: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--card-separator-color) 64%, transparent);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
 }
 
 .archive-publish-chart__header,
@@ -1868,7 +1880,6 @@ body.template-archives {
 
     .archive-publish-chart {
         padding: 24px 22px 20px;
-        border-radius: 22px;
     }
 
     .archive-timeline__entry {
@@ -1878,6 +1889,11 @@ body.template-archives {
 }
 
 @media (max-width: 640px) {
+    .archive-surface {
+        width: 100%;
+        border-radius: 20px;
+    }
+
     .template-archives .top-layout {
         padding-top: 14px;
     }

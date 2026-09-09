@@ -34,6 +34,7 @@
     {{- end -}}
     {{- $areaPoints := printf "56,188 %s 936,188" $linePoints -}}
 
+    <div class="archive-surface">
     <section class="archive-publish-chart" aria-labelledby="archive-chart-title">
         <header class="archive-publish-chart__header">
             <div>
@@ -165,6 +166,7 @@
             {{- end -}}
         </div>
     </section>
+    </div>
 
     {{ partialCached "footer/footer" . }}
 {{ end }}
