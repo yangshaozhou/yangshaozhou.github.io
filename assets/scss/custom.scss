@@ -1283,7 +1283,7 @@ body.homepage-shell .site-topbar {
 body.template-archives {
     background-color: var(--body-background);
     background-image:
-        linear-gradient(rgba(247, 250, 253, 0.88), rgba(247, 250, 253, 0.95)),
+        linear-gradient(rgba(247, 250, 253, 0.58), rgba(247, 250, 253, 0.72)),
         url("/images/home-background.png");
     background-attachment: fixed;
     background-position: center top;
@@ -1293,7 +1293,7 @@ body.template-archives {
 
 [data-scheme="dark"] body.template-archives {
     background-image:
-        linear-gradient(rgba(17, 20, 33, 0.88), rgba(17, 20, 33, 0.96)),
+        linear-gradient(rgba(17, 20, 33, 0.62), rgba(17, 20, 33, 0.78)),
         url("/images/home-background.png");
 }
 
