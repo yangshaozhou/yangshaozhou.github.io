@@ -1533,26 +1533,22 @@ body.template-archives {
 .archive-timeline__zodiac {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-    padding: 6px 12px 6px 8px;
-    border: 1px solid color-mix(in srgb, var(--archive-accent) 30%, var(--card-separator-color));
-    border-radius: 999px;
-    color: var(--card-text-color-secondary);
-    background: color-mix(in srgb, var(--card-background) 72%, transparent);
-    font-size: 1.25rem;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    margin-left: 2px;
+    padding: 0;
+    border: 0;
+    color: #d58b45;
+    background: transparent;
     white-space: nowrap;
 }
 
 .archive-timeline__zodiac-icon {
-    width: 34px;
-    height: 34px;
+    display: block;
+    width: 52px;
+    height: 52px;
     object-fit: contain;
-    color: #d58b45;
-}
-
-.archive-timeline__zodiac-name {
-    font-size: 1.25rem;
-    line-height: 1;
 }
 
 .archive-timeline__year-header small {

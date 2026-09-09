@@ -121,11 +121,10 @@
                     <header class="archive-timeline__year-header">
                         <span class="archive-timeline__marker" aria-hidden="true"></span>
                         <a href="{{ $.RelPermalink }}#{{ $yearID }}">{{ .Key }}</a>
-                        <span class="archive-timeline__zodiac" title="{{ .Key }} 年生肖：{{ $zodiac.name }}">
+                        <span class="archive-timeline__zodiac" role="img" aria-label="{{ .Key }} 年生肖：{{ $zodiac.name }}" title="{{ .Key }} 年生肖：{{ $zodiac.name }}">
                             {{ with $zodiac.icon }}
                                 <img class="archive-timeline__zodiac-icon" src="{{ . | relURL }}" alt="">
                             {{ end }}
-                            <span class="archive-timeline__zodiac-name">{{ $zodiac.name }}年</span>
                         </span>
                         <small>{{ len .Pages }} 篇</small>
                     </header>
