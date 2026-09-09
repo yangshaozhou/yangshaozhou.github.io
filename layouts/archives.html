@@ -102,7 +102,7 @@
         "7" (dict "name" "兔" "glyph" "兔")
         "8" (dict "name" "龙" "glyph" "龙")
         "9" (dict "name" "蛇" "glyph" "蛇")
-        "10" (dict "name" "马" "glyph" "马")
+        "10" (dict "name" "马" "glyph" "马" "icon" "images/zodiac/horse-oracle.svg")
         "11" (dict "name" "羊" "glyph" "羊")
     -}}
 
@@ -123,7 +123,11 @@
                         <span class="archive-timeline__marker" aria-hidden="true"></span>
                         <a href="{{ $.RelPermalink }}#{{ $yearID }}">{{ .Key }}</a>
                         <span class="archive-timeline__zodiac" role="img" aria-label="{{ .Key }} 年生肖：{{ $zodiac.name }}" title="{{ .Key }} 年生肖：{{ $zodiac.name }}">
-                            <span class="archive-timeline__zodiac-glyph" aria-hidden="true">{{ $zodiac.glyph }}</span>
+                            {{ with $zodiac.icon }}
+                                <img class="archive-timeline__zodiac-oracle" src="{{ . | relURL }}" alt="">
+                            {{ else }}
+                                <span class="archive-timeline__zodiac-glyph" aria-hidden="true">{{ $zodiac.glyph }}</span>
+                            {{ end }}
                         </span>
                         <small>{{ len .Pages }} 篇</small>
                     </header>

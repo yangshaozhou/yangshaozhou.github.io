@@ -1567,6 +1567,14 @@ body.template-archives {
     transform: translateY(-1px);
 }
 
+.archive-timeline__zodiac-oracle {
+    display: block;
+    width: 46px;
+    height: 46px;
+    object-fit: contain;
+    filter: sepia(0.28) saturate(0.78) hue-rotate(116deg) brightness(0.82);
+}
+
 .archive-timeline__year-header small {
     margin-left: auto;
     color: var(--card-text-color-tertiary);
