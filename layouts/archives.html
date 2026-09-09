@@ -91,18 +91,18 @@
     </section>
 
     {{- $zodiacs := dict
-        "0" (dict "name" "猴" "symbol" "🐒")
-        "1" (dict "name" "鸡" "symbol" "🐓")
-        "2" (dict "name" "狗" "symbol" "🐕")
-        "3" (dict "name" "猪" "symbol" "🐖")
-        "4" (dict "name" "鼠" "symbol" "🐀")
-        "5" (dict "name" "牛" "symbol" "🐂")
-        "6" (dict "name" "虎" "symbol" "🐅")
-        "7" (dict "name" "兔" "symbol" "🐇")
-        "8" (dict "name" "龙" "symbol" "🐉")
-        "9" (dict "name" "蛇" "symbol" "🐍")
-        "10" (dict "name" "马" "symbol" "🐎")
-        "11" (dict "name" "羊" "symbol" "🐐")
+        "0" (dict "name" "猴")
+        "1" (dict "name" "鸡")
+        "2" (dict "name" "狗")
+        "3" (dict "name" "猪")
+        "4" (dict "name" "鼠")
+        "5" (dict "name" "牛")
+        "6" (dict "name" "虎")
+        "7" (dict "name" "兔")
+        "8" (dict "name" "龙")
+        "9" (dict "name" "蛇")
+        "10" (dict "name" "马" "icon" "images/zodiac/horse.svg")
+        "11" (dict "name" "羊")
     -}}
 
     <section class="archive-timeline" aria-labelledby="archive-overview-title">
@@ -122,8 +122,10 @@
                         <span class="archive-timeline__marker" aria-hidden="true"></span>
                         <a href="{{ $.RelPermalink }}#{{ $yearID }}">{{ .Key }}</a>
                         <span class="archive-timeline__zodiac" title="{{ .Key }} 年生肖：{{ $zodiac.name }}">
-                            <span aria-hidden="true">{{ $zodiac.symbol }}</span>
-                            {{ $zodiac.name }}年
+                            {{ with $zodiac.icon }}
+                                <img class="archive-timeline__zodiac-icon" src="{{ . | relURL }}" alt="">
+                            {{ end }}
+                            <span class="archive-timeline__zodiac-name">{{ $zodiac.name }}年</span>
                         </span>
                         <small>{{ len .Pages }} 篇</small>
                     </header>

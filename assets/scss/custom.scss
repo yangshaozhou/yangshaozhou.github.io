@@ -1543,8 +1543,15 @@ body.template-archives {
     white-space: nowrap;
 }
 
-.archive-timeline__zodiac > span {
-    font-size: 2.35rem;
+.archive-timeline__zodiac-icon {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    color: #d58b45;
+}
+
+.archive-timeline__zodiac-name {
+    font-size: 1.25rem;
     line-height: 1;
 }
 
