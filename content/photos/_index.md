@@ -1,6 +1,5 @@
 ---
 title: "照片"
 description: "用照片记录生活中的片段。"
+layout: "photos"
 ---
-
-这里将用于展示我的照片和图集。

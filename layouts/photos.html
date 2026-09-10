@@ -1,0 +1,89 @@
+{{ define "body-class" }}template-photos{{ end }}
+
+{{ define "main" }}
+    {{- $posts := where .Site.RegularPages "Section" "in" .Site.Params.mainSections -}}
+    {{- $photoPosts := slice -}}
+    {{- range sort $posts "Date" "desc" -}}
+        {{- if .Params.image -}}
+            {{- $photoPosts = $photoPosts | append . -}}
+        {{- end -}}
+    {{- end -}}
+
+    {{- $categories := slice -}}
+    {{- range $photoPosts -}}
+        {{- range .Params.categories -}}
+            {{- if not (in $categories .) -}}
+                {{- $categories = $categories | append . -}}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+
+    <div class="photos-workspace">
+        <aside class="photos-catalog" aria-label="照片分类">
+            <header class="photos-catalog__header">
+                <div>
+                    <p>PHOTO INDEX</p>
+                    <h1>照片分类</h1>
+                </div>
+                <strong>{{ len $photoPosts }}</strong>
+            </header>
+            <p class="photos-catalog__intro">从光线、城市和日常里，挑选值得再次凝视的片段。</p>
+
+            <nav class="photos-catalog__nav" aria-label="按分类筛选照片">
+                <button class="photos-catalog__filter is-active" type="button" data-photo-filter="all" aria-pressed="true">
+                    <span>全部照片</span>
+                    <small>{{ len $photoPosts }}</small>
+                </button>
+                {{ range $categories }}
+                    {{- $category := . -}}
+                    {{- $count := 0 -}}
+                    {{- range $photoPosts -}}
+                        {{- if in .Params.categories $category -}}
+                            {{- $count = add $count 1 -}}
+                        {{- end -}}
+                    {{- end -}}
+                    <button class="photos-catalog__filter" type="button" data-photo-filter="{{ $category }}" aria-pressed="false">
+                        <span>{{ $category }}</span>
+                        <small>{{ $count }}</small>
+                    </button>
+                {{ end }}
+            </nav>
+        </aside>
+
+        <section class="photos-wall-section" aria-labelledby="photos-wall-title">
+            <header class="photos-wall-section__header">
+                <div>
+                    <p>SELECTED MOMENTS</p>
+                    <h2 id="photos-wall-title">照片墙</h2>
+                </div>
+                <span>{{ len $photoPosts }} 张照片</span>
+            </header>
+
+            <div class="photos-wall" data-photo-wall>
+                {{- range $index, $photo := $photoPosts -}}
+                    {{- $subtitle := $photo.Params.subtitle | default ($photo.Summary | plainify | truncate 78) -}}
+                    <article class="photo-card photo-card--{{ mod $index 4 }}" data-photo-card data-photo-categories="{{ delimit $photo.Params.categories "," }}">
+                        <a class="photo-card__image-link" href="{{ $photo.RelPermalink }}" aria-label="查看《{{ $photo.Title }}》">
+                            <img src="{{ $photo.Params.image | relURL }}" alt="{{ $photo.Title }}" loading="lazy" width="960" height="640">
+                            <span class="photo-card__date">
+                                {{ partial "helper/icon" "date" }}
+                                {{ $photo.Date.Format "2006-01-02" }}
+                            </span>
+                            <span class="photo-card__open" aria-hidden="true">↗</span>
+                            <div class="photo-card__caption">
+                                <span class="photo-card__category">{{ delimit $photo.Params.categories " · " }}</span>
+                                <h3>{{ $photo.Title }}</h3>
+                                <p>{{ $subtitle }}</p>
+                            </div>
+                        </a>
+                    </article>
+                {{ else }}
+                    <p class="photos-wall__empty">还没有照片，先从生活里留下一束光。</p>
+                {{ end }}
+            </div>
+            <p class="photos-wall__no-results" data-photo-empty hidden>这个分类暂时还没有照片。</p>
+        </section>
+    </div>
+
+    {{ partialCached "footer/footer" . }}
+{{ end }}

@@ -119,3 +119,36 @@ if (colorSchemeToggle) {
     syncColorSchemeLabel();
     window.addEventListener('onColorSchemeChange', syncColorSchemeLabel);
 }
+
+const photoWall = document.querySelector<HTMLElement>('[data-photo-wall]');
+const photoFilters = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-photo-filter]'));
+const photoEmpty = document.querySelector<HTMLElement>('[data-photo-empty]');
+
+if (photoWall && photoFilters.length > 0) {
+    const photoCards = Array.from(photoWall.querySelectorAll<HTMLElement>('[data-photo-card]'));
+
+    const applyPhotoFilter = (filter: string) => {
+        let visibleCount = 0;
+
+        photoFilters.forEach((button) => {
+            const active = button.dataset.photoFilter === filter;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+
+        photoCards.forEach((card) => {
+            const categories = (card.dataset.photoCategories ?? '').split(',').map((item) => item.trim());
+            const visible = filter === 'all' || categories.some((category) => category && category.toLowerCase() === filter.toLowerCase());
+            card.hidden = !visible;
+            if (visible) visibleCount += 1;
+        });
+
+        if (photoEmpty) photoEmpty.hidden = visibleCount > 0;
+    };
+
+    photoFilters.forEach((button) => {
+        button.addEventListener('click', () => {
+            applyPhotoFilter(button.dataset.photoFilter ?? 'all');
+        });
+    });
+}

@@ -2028,3 +2028,399 @@ body.template-archives {
         transition: none;
     }
 }
+
+/* Photos: a catalog rail beside a masonry wall of selected moments. */
+body.template-photos {
+    background-color: var(--body-background);
+    background-image:
+        linear-gradient(rgba(247, 250, 253, 0.56), rgba(247, 250, 253, 0.72)),
+        url("/images/home-background.png");
+    background-attachment: fixed;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+[data-scheme="dark"] body.template-photos {
+    background-image:
+        linear-gradient(rgba(17, 20, 33, 0.62), rgba(17, 20, 33, 0.78)),
+        url("/images/home-background.png");
+}
+
+.template-photos .top-layout {
+    max-width: 1536px;
+    padding-top: 34px;
+}
+
+.template-photos .top-layout main.main {
+    width: 100%;
+    max-width: none;
+}
+
+.photos-workspace {
+    display: grid;
+    grid-template-columns: minmax(210px, 23%) minmax(0, 1fr);
+    gap: clamp(34px, 5vw, 76px);
+    width: 92%;
+    margin: 0 auto;
+    padding: clamp(32px, 4vw, 60px);
+    border: 1px solid color-mix(in srgb, var(--card-separator-color) 66%, transparent);
+    border-radius: 30px;
+    background: color-mix(in srgb, var(--card-background) 54%, transparent);
+    box-shadow: 0 30px 90px rgba(37, 54, 82, 0.14);
+    backdrop-filter: blur(20px) saturate(1.05);
+}
+
+.photos-catalog {
+    align-self: start;
+    position: sticky;
+    top: 108px;
+}
+
+.photos-catalog__header,
+.photos-wall-section__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.photos-catalog__header p,
+.photos-wall-section__header p {
+    margin: 0 0 8px;
+    color: var(--card-text-color-tertiary);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+}
+
+.photos-catalog__header h1,
+.photos-wall-section__header h2 {
+    margin: 0;
+    color: var(--card-text-color-main);
+    font-size: clamp(2.2rem, 2.8vw, 3.1rem);
+    letter-spacing: -0.04em;
+}
+
+.photos-catalog__header strong {
+    color: var(--photos-accent, #e88981);
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.photos-catalog__intro {
+    max-width: 240px;
+    margin: 20px 0 38px;
+    color: var(--card-text-color-secondary);
+    font-size: 1.45rem;
+    line-height: 1.75;
+}
+
+.photos-catalog__nav {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-left: 18px;
+}
+
+.photos-catalog__nav::before {
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 2px;
+    width: 1px;
+    content: "";
+    background: color-mix(in srgb, var(--card-separator-color) 75%, transparent);
+}
+
+.photos-catalog__filter {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    min-height: 42px;
+    padding: 7px 0;
+    border: 0;
+    color: var(--card-text-color-secondary);
+    background: transparent;
+    font: inherit;
+    font-size: 1.55rem;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.photos-catalog__filter::before {
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    content: "";
+    background: color-mix(in srgb, var(--card-text-color-tertiary) 56%, transparent);
+    transform: translateY(-50%);
+}
+
+.photos-catalog__filter small {
+    color: var(--card-text-color-tertiary);
+    font-size: 1.2rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.photos-catalog__filter:hover,
+.photos-catalog__filter.is-active {
+    color: var(--photos-accent, #e88981);
+    transform: translateX(4px);
+}
+
+.photos-catalog__filter.is-active {
+    font-weight: 650;
+}
+
+.photos-catalog__filter.is-active::before {
+    width: 9px;
+    height: 9px;
+    background: var(--photos-accent, #e88981);
+}
+
+.photos-wall-section__header {
+    align-items: end;
+    margin-bottom: 26px;
+}
+
+.photos-wall-section__header > span {
+    color: var(--card-text-color-tertiary);
+    font-size: 1.3rem;
+}
+
+.photos-wall {
+    column-count: 2;
+    column-gap: 20px;
+}
+
+.photo-card {
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 20px;
+    break-inside: avoid;
+}
+
+.photo-card__image-link {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #26354d;
+    box-shadow: 0 12px 30px rgba(30, 47, 73, 0.15);
+    isolation: isolate;
+}
+
+.photo-card__image-link::after {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    content: "";
+    background: linear-gradient(to bottom, rgba(10, 16, 30, 0.36), transparent 24%, transparent 47%, rgba(10, 16, 30, 0.9) 100%);
+    pointer-events: none;
+}
+
+.photo-card img {
+    display: block;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.45s ease, filter 0.45s ease;
+}
+
+.photo-card--1 img {
+    height: 390px;
+}
+
+.photo-card--2 img {
+    height: 250px;
+}
+
+.photo-card--3 img {
+    height: 340px;
+}
+
+.photo-card__image-link:hover img {
+    filter: saturate(1.08);
+    transform: scale(1.04);
+}
+
+.photo-card__date,
+.photo-card__open {
+    position: absolute;
+    z-index: 2;
+    top: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 1.2rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.photo-card__date {
+    left: 16px;
+}
+
+.photo-card__date svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 1.8;
+}
+
+.photo-card__open {
+    right: 16px;
+    justify-content: center;
+    width: 27px;
+    height: 27px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.photo-card__image-link:hover .photo-card__open {
+    background: rgba(255, 255, 255, 0.16);
+    transform: translate(2px, -2px);
+}
+
+.photo-card__caption {
+    position: absolute;
+    right: 19px;
+    bottom: 18px;
+    left: 19px;
+    z-index: 2;
+    color: #fff;
+}
+
+.photo-card__category {
+    display: block;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+}
+
+.photo-card__caption h3 {
+    margin: 0;
+    font-size: clamp(1.75rem, 2vw, 2.25rem);
+    font-weight: 650;
+    line-height: 1.28;
+}
+
+.photo-card__caption p {
+    display: -webkit-box;
+    overflow: hidden;
+    margin: 8px 0 0;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 1.25rem;
+    line-height: 1.55;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.photos-wall__empty,
+.photos-wall__no-results {
+    color: var(--card-text-color-secondary);
+    font-size: 1.5rem;
+}
+
+@media (max-width: 1023px) {
+    .photos-workspace {
+        width: 96%;
+        grid-template-columns: minmax(180px, 25%) minmax(0, 1fr);
+        gap: 28px;
+        padding: 28px;
+    }
+
+    .photos-wall {
+        column-gap: 14px;
+    }
+
+    .photo-card {
+        margin-bottom: 14px;
+    }
+
+    .photo-card img,
+    .photo-card--1 img,
+    .photo-card--2 img,
+    .photo-card--3 img {
+        height: 260px;
+    }
+}
+
+@media (max-width: 700px) {
+    .template-photos .top-layout {
+        padding-top: 14px;
+    }
+
+    .photos-workspace {
+        display: block;
+        width: 100%;
+        padding: 22px 16px 26px;
+        border-radius: 20px;
+    }
+
+    .photos-catalog {
+        position: static;
+        margin-bottom: 30px;
+    }
+
+    .photos-catalog__intro {
+        max-width: none;
+        margin: 14px 0 20px;
+    }
+
+    .photos-catalog__nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 7px 17px;
+        padding: 0;
+    }
+
+    .photos-catalog__nav::before,
+    .photos-catalog__filter::before {
+        display: none;
+    }
+
+    .photos-catalog__filter {
+        width: auto;
+        min-height: 32px;
+        padding: 4px 0;
+        font-size: 1.4rem;
+    }
+
+    .photos-catalog__filter small {
+        margin-left: -9px;
+    }
+
+    .photos-wall-section__header {
+        margin-bottom: 18px;
+    }
+
+    .photos-wall {
+        column-count: 1;
+    }
+
+    .photo-card,
+    .photo-card img,
+    .photo-card--1 img,
+    .photo-card--2 img,
+    .photo-card--3 img {
+        height: auto;
+    }
+
+    .photo-card img {
+        aspect-ratio: 1.48;
+    }
+}
