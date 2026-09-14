@@ -2507,8 +2507,8 @@ body.template-quotes {
 
 .quotes-workspace {
     display: grid;
-    grid-template-columns: minmax(200px, 24%) minmax(0, 1fr);
-    gap: clamp(28px, 4vw, 54px);
+    grid-template-columns: minmax(180px, 20%) minmax(0, 1fr);
+    gap: clamp(24px, 3vw, 42px);
     width: 92%;
     margin: 0 auto;
     padding: clamp(28px, 3.5vw, 48px);
@@ -2734,7 +2734,7 @@ body.template-quotes {
 @media (max-width: 1023px) {
     .quotes-workspace {
         width: 96%;
-        grid-template-columns: minmax(190px, 26%) minmax(0, 1fr);
+        grid-template-columns: minmax(175px, 22%) minmax(0, 1fr);
         gap: 28px;
         padding: 28px;
     }
