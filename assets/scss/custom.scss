@@ -2255,15 +2255,16 @@ body.template-photos {
 }
 
 .photos-wall {
-    column-count: 2;
-    column-gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 20px;
 }
 
 .photo-card {
-    display: inline-block;
+    display: block;
     width: 100%;
-    margin: 0 0 20px;
-    break-inside: avoid;
+    margin: 0;
 }
 
 .photo-card[hidden] {
@@ -2404,11 +2405,11 @@ body.template-photos {
     }
 
     .photos-wall {
-        column-gap: 14px;
+        gap: 14px;
     }
 
     .photo-card {
-        margin-bottom: 14px;
+        margin: 0;
     }
 
     .photo-card img,
@@ -2460,7 +2461,7 @@ body.template-photos {
     }
 
     .photos-wall {
-        column-count: 1;
+        grid-template-columns: 1fr;
     }
 
     .photo-card,
