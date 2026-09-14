@@ -123,6 +123,10 @@ if (colorSchemeToggle) {
 const photoWall = document.querySelector<HTMLElement>('[data-photo-wall]');
 const photoFilters = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-photo-filter]'));
 const photoEmpty = document.querySelector<HTMLElement>('[data-photo-empty]');
+const photoTitle = document.querySelector<HTMLElement>('[data-photo-title]');
+const photoIntro = document.querySelector<HTMLElement>('[data-photo-intro]');
+const photoCount = document.querySelector<HTMLElement>('[data-photo-count]');
+const photoWallCount = document.querySelector<HTMLElement>('[data-photo-wall-count]');
 
 if (photoWall && photoFilters.length > 0) {
     const photoCards = Array.from(photoWall.querySelectorAll<HTMLElement>('[data-photo-card]'));
@@ -135,6 +139,12 @@ if (photoWall && photoFilters.length > 0) {
             button.classList.toggle('is-active', active);
             button.setAttribute('aria-pressed', active ? 'true' : 'false');
         });
+
+        const selected = photoFilters.find((button) => button.dataset.photoFilter === filter);
+        if (photoTitle) photoTitle.textContent = selected?.dataset.photoTitle ?? '照片';
+        if (photoIntro) photoIntro.textContent = selected?.dataset.photoDescription ?? '从光线、城市和日常里，挑选值得再次凝视的片段。';
+        if (photoCount) photoCount.textContent = selected?.dataset.photoCount ?? String(photoCards.length);
+        if (photoWallCount) photoWallCount.textContent = `${selected?.dataset.photoCount ?? photoCards.length} 张照片`;
 
         photoCards.forEach((card) => {
             const categories = (card.dataset.photoCategories ?? '').split(',').map((item) => item.trim());
