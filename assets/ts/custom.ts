@@ -161,4 +161,9 @@ if (photoWall && photoFilters.length > 0) {
             applyPhotoFilter(button.dataset.photoFilter ?? 'all');
         });
     });
+
+    const initialFilter = photoFilters.find((button) => button.classList.contains('is-active'))?.dataset.photoFilter
+        ?? photoFilters[0]?.dataset.photoFilter;
+
+    if (initialFilter) applyPhotoFilter(initialFilter);
 }

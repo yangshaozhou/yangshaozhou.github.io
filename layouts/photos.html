@@ -37,8 +37,7 @@
             <p class="photos-catalog__intro" data-photo-intro>从光线、城市和日常里，挑选值得再次凝视的片段。</p>
 
             <nav class="photos-catalog__nav" aria-label="按分类筛选照片">
-                {{ range $categories }}
-                    {{- $category := . -}}
+                {{ range $categoryIndex, $category := $categories }}
                     {{- $count := 0 -}}
                     {{- range $photoPosts -}}
                         {{- if in .Params.categories $category -}}
@@ -46,7 +45,7 @@
                         {{- end -}}
                     {{- end -}}
                     {{- $description := default "从日常里挑选值得再次凝视的片段。" (index $categoryDescriptions $category) -}}
-                    <button class="photos-catalog__filter" type="button" data-photo-filter="{{ $category }}" data-photo-title="{{ $category }}" data-photo-description="{{ $description }}" data-photo-count="{{ $count }}" aria-pressed="false">
+                    <button class="photos-catalog__filter{{ if eq $categoryIndex 0 }} is-active{{ end }}" type="button" data-photo-filter="{{ $category }}" data-photo-title="{{ $category }}" data-photo-description="{{ $description }}" data-photo-count="{{ $count }}" aria-pressed="{{ if eq $categoryIndex 0 }}true{{ else }}false{{ end }}">
                         <span>{{ $category }}</span>
                         <small>{{ $count }}</small>
                     </button>
@@ -60,7 +59,7 @@
                     <p>SELECTED MOMENTS</p>
                     <h2 id="photos-wall-title">照片墙</h2>
                 </div>
-                <span data-photo-wall-count>{{ len $photoPosts }} 张照片</span>
+                <span data-photo-wall-count aria-live="polite">{{ len $photoPosts }} 张照片</span>
             </header>
 
             <div class="photos-wall" data-photo-wall>
