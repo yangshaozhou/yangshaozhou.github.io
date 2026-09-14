@@ -2507,11 +2507,11 @@ body.template-quotes {
 
 .quotes-workspace {
     display: grid;
-    grid-template-columns: minmax(240px, 29%) minmax(0, 1fr);
-    gap: clamp(34px, 5vw, 76px);
+    grid-template-columns: minmax(200px, 24%) minmax(0, 1fr);
+    gap: clamp(28px, 4vw, 54px);
     width: 92%;
     margin: 0 auto;
-    padding: clamp(32px, 4vw, 60px);
+    padding: clamp(28px, 3.5vw, 48px);
     border: 1px solid color-mix(in srgb, var(--card-separator-color) 66%, transparent);
     border-radius: 30px;
     background: color-mix(in srgb, var(--card-background) 54%, transparent);
@@ -2528,8 +2528,10 @@ body.template-quotes {
 .quotes-index__header {
     position: relative;
     display: flex;
+    flex: 1 1 auto;
+    align-items: center;
     justify-content: center;
-    min-height: 150px;
+    min-height: 240px;
     text-align: center;
 }
 
@@ -2561,23 +2563,23 @@ body.template-quotes {
 }
 
 .quotes-index__intro {
-    max-width: 270px;
-    margin: 16px auto 0;
+    max-width: 230px;
+    margin: 0 auto;
     color: var(--card-text-color-secondary);
-    font-size: 1.4rem;
-    line-height: 1.8;
+    font-size: 1.25rem;
+    line-height: 1.65;
     text-align: center;
 }
 
 .quotes-index__pagination {
-    margin-top: auto;
+    margin-top: 22px;
 }
 
 .quotes-index__pagination-label {
     display: flex;
     align-items: baseline;
     gap: 9px;
-    padding-bottom: 12px;
+    padding-bottom: 6px;
     color: var(--card-text-color-tertiary);
     font-size: 1.1rem;
     letter-spacing: 0.14em;
@@ -2603,7 +2605,7 @@ body.template-quotes {
 
 .quotes-index__pagination .pagination .page-link {
     min-width: 38px;
-    padding: 12px 0;
+    padding: 8px 0;
     color: var(--card-text-color-secondary);
 }
 
@@ -2620,13 +2622,13 @@ body.template-quotes {
 .quotes-wall-section__header {
     display: flex;
     align-items: end;
-    margin-bottom: 26px;
+    margin-bottom: 18px;
 }
 
 .quotes-wall {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
+    gap: 14px;
 }
 
 .quote-card {
@@ -2635,24 +2637,13 @@ body.template-quotes {
 
 .quote-card__image {
     position: relative;
-    min-height: 300px;
+    height: clamp(260px, 24vw, 320px);
+    min-height: 0;
     overflow: hidden;
     border-radius: 20px;
     background: #26354d;
     box-shadow: 0 12px 30px rgba(30, 47, 73, 0.15);
     isolation: isolate;
-}
-
-.quote-card--1 .quote-card__image {
-    min-height: 360px;
-}
-
-.quote-card--2 .quote-card__image {
-    min-height: 260px;
-}
-
-.quote-card--3 .quote-card__image {
-    min-height: 330px;
 }
 
 .quote-card__image > img {
@@ -2743,7 +2734,7 @@ body.template-quotes {
 @media (max-width: 1023px) {
     .quotes-workspace {
         width: 96%;
-        grid-template-columns: minmax(200px, 30%) minmax(0, 1fr);
+        grid-template-columns: minmax(190px, 26%) minmax(0, 1fr);
         gap: 28px;
         padding: 28px;
     }
@@ -2752,7 +2743,7 @@ body.template-quotes {
     .quote-card--1 .quote-card__image,
     .quote-card--2 .quote-card__image,
     .quote-card--3 .quote-card__image {
-        min-height: 270px;
+        height: 270px;
     }
 }
 
@@ -2794,6 +2785,6 @@ body.template-quotes {
     .quote-card--1 .quote-card__image,
     .quote-card--2 .quote-card__image,
     .quote-card--3 .quote-card__image {
-        min-height: 300px;
+        height: 300px;
     }
 }
