@@ -2523,6 +2523,8 @@ body.template-quotes {
     display: flex;
     flex-direction: column;
     min-height: 640px;
+    padding-right: clamp(20px, 2.5vw, 36px);
+    border-right: 1px solid color-mix(in srgb, var(--photos-accent, #e88981) 22%, var(--card-separator-color));
 }
 
 .quotes-index__header {
@@ -2544,6 +2546,10 @@ body.template-quotes {
     letter-spacing: 0.16em;
 }
 
+.quotes-index__title p {
+    margin: 6px 0 0;
+}
+
 .quotes-index__title h1,
 .quotes-wall-section__header h2 {
     margin: 0;
@@ -2554,8 +2560,8 @@ body.template-quotes {
 
 .quotes-index__header strong {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: calc(50% - 38px);
+    right: clamp(4px, 1vw, 14px);
     color: var(--photos-accent, #e88981);
     font-size: 2rem;
     font-weight: 500;
@@ -2762,6 +2768,10 @@ body.template-quotes {
     .quotes-index {
         min-height: 0;
         margin-bottom: 34px;
+        padding-right: 0;
+        padding-bottom: 22px;
+        border-right: 0;
+        border-bottom: 1px solid color-mix(in srgb, var(--photos-accent, #e88981) 22%, var(--card-separator-color));
     }
 
     .quotes-index__header {
