@@ -1,0 +1,65 @@
+{{ define "body-class" }}template-quotes{{ end }}
+
+{{ define "main" }}
+    {{- $quotes := sort .RegularPages "Date" "desc" -}}
+    {{- $paginator := .Paginate $quotes 4 -}}
+
+    <div class="quotes-workspace">
+        <aside class="quotes-index" aria-label="箴言索引">
+            <header class="quotes-index__header">
+                <div class="quotes-index__title">
+                    <p>WORDS TO KEEP</p>
+                    <h1>箴言</h1>
+                </div>
+                <strong>{{ len $quotes }}</strong>
+            </header>
+
+            <p class="quotes-index__intro">把值得记住的话留在这里，让每次翻阅都重新获得一点力量。</p>
+
+            <div class="quotes-index__pagination">
+                <div class="quotes-index__pagination-label">
+                    <span>PAGE</span>
+                    <strong>{{ printf "%02d" $paginator.PageNumber }}</strong>
+                    <small>/ {{ printf "%02d" $paginator.TotalPages }}</small>
+                </div>
+                {{ partial "pagination.html" . }}
+            </div>
+        </aside>
+
+        <section class="quotes-wall-section" aria-labelledby="quotes-wall-title">
+            <header class="quotes-wall-section__header">
+                <div>
+                    <p>SELECTED THOUGHTS</p>
+                    <h2 id="quotes-wall-title">留下来的话</h2>
+                </div>
+            </header>
+
+            <div class="quotes-wall">
+                {{ range $index, $quote := $paginator.Pages }}
+                    <article class="quote-card quote-card--{{ mod $index 4 }}">
+                        <div class="quote-card__image">
+                            <img src="{{ $quote.Params.image | relURL }}" alt="{{ $quote.Title }}" loading="lazy" width="960" height="640">
+                            <div class="quote-card__shade"></div>
+                            <div class="quote-card__meta">
+                                <span class="quote-card__date">
+                                    {{ partial "helper/icon" "date" }}
+                                    {{ $quote.Date.Format "2006-01-02" }}
+                                </span>
+                                <span class="quote-card__author">
+                                    <img src="{{ "images/avatar.svg" | relURL }}" alt="" aria-hidden="true">
+                                    {{ $quote.Params.author | default "星轨路迹" }}
+                                </span>
+                            </div>
+                            <div class="quote-card__caption">
+                                <h3>{{ $quote.Title }}</h3>
+                                <p>{{ $quote.Content | plainify }}</p>
+                            </div>
+                        </div>
+                    </article>
+                {{ end }}
+            </div>
+        </section>
+    </div>
+
+    {{ partialCached "footer/footer" . }}
+{{ end }}
