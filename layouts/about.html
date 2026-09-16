@@ -29,48 +29,67 @@
             </div>
         </section>
 
-        <section class="about-content" aria-label="个人资料与近期记录">
-            <div class="about-profile-panel">
-                <div class="about-section-label">ABOUT / 01</div>
-                <h2>关于我</h2>
-                <div class="about-profile-panel__copy">{{ .Content }}</div>
-                <a class="about-profile-panel__link" href="https://github.com/yangshaozhou" target="_blank" rel="noopener">
-                    <span>查看 GitHub 项目</span>
-                    <b aria-hidden="true">↗</b>
-                </a>
-            </div>
-
-            <div class="about-records-panel">
-                <div class="about-section-label">THE JOURNAL / 02</div>
-                <div class="about-records-panel__header">
-                    <h2>最近的记录</h2>
-                    <a href="{{ "archives/" | relURL }}">全部文章 <span aria-hidden="true">↗</span></a>
+        <section class="about-content" aria-label="作者动态与作者资料">
+            <aside class="about-sidebar">
+                <div class="about-sidebar__identity">
+                    <img src="{{ "images/avatar.svg" | relURL }}" alt="杨少洲的头像">
+                    <strong>杨少洲</strong>
+                    <span>在星轨之间，记录脚下的路迹。</span>
                 </div>
-
-                <div class="about-records">
-                    {{ range $index, $post := $latestPosts }}
-                        <a class="about-record" href="{{ $post.RelPermalink }}">
-                            <span class="about-record__index">0{{ add $index 1 }}</span>
-                            <span class="about-record__body">
-                                <time datetime="{{ $post.Date.Format "2006-01-02" }}">{{ $post.Date.Format "2006 / 01 / 02" }}</time>
-                                <strong>{{ $post.Title }}</strong>
-                                <span>{{ $post.Summary | plainify | truncate 86 }}</span>
-                            </span>
-                            <span class="about-record__arrow" aria-hidden="true">↗</span>
-                        </a>
-                    {{ end }}
+                <div class="about-section-label">AUTHOR / 01</div>
+                <div class="about-tabs" role="tablist" aria-label="作者内容切换">
+                    <button class="about-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="about-feed-panel" data-about-tab="feed">
+                        <span>作者动态</span><b aria-hidden="true">↗</b>
+                    </button>
+                    <button class="about-tab" type="button" role="tab" aria-selected="false" aria-controls="about-profile-panel" data-about-tab="profile">
+                        <span>作者资料</span><b aria-hidden="true">↗</b>
+                    </button>
                 </div>
-            </div>
-
-            <aside class="about-stats-panel" aria-label="博客统计">
-                <div class="about-section-label">A FEW NUMBERS / 03</div>
-                <div class="about-stats">
-                    <div><strong>{{ len $posts }}</strong><span>文章</span></div>
-                    <div><strong>{{ len .Site.Taxonomies.tags }}</strong><span>标签</span></div>
-                    <div><strong>{{ len .Site.Taxonomies.categories }}</strong><span>分类</span></div>
-                </div>
-                <p>持续记录正在发生的事，也记录那些值得回看的瞬间。</p>
             </aside>
+
+            <div class="about-panels">
+                <section class="about-tab-panel is-active" id="about-feed-panel" role="tabpanel" data-about-panel="feed" aria-labelledby="about-feed-title">
+                    <div class="about-section-label">THE JOURNAL / 02</div>
+                    <div class="about-panel-heading">
+                        <h2 id="about-feed-title">作者动态</h2>
+                        <a href="{{ "archives/" | relURL }}">全部文章 <span aria-hidden="true">↗</span></a>
+                    </div>
+                    <div class="about-feed-grid">
+                        {{ range $index, $post := $latestPosts }}
+                            <a class="about-feed-card about-feed-card--{{ mod $index 4 }}" href="{{ $post.RelPermalink }}">
+                                <div class="about-feed-card__image">
+                                    <img src="{{ $post.Params.image | relURL }}" alt="{{ $post.Title }}" loading="lazy" width="960" height="640">
+                                    <div class="about-feed-card__shade"></div>
+                                    <div class="about-feed-card__meta">
+                                        <time datetime="{{ $post.Date.Format "2006-01-02" }}">{{ $post.Date.Format "2006 / 01 / 02" }}</time>
+                                        <span>{{ with $post.Params.categories }}{{ index . 0 }}{{ end }}</span>
+                                    </div>
+                                    <div class="about-feed-card__caption">
+                                        <h3>{{ $post.Title }}</h3>
+                                        <p>{{ $post.Summary | plainify | truncate 92 }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        {{ end }}
+                    </div>
+                </section>
+
+                <section class="about-tab-panel" id="about-profile-panel" role="tabpanel" data-about-panel="profile" aria-labelledby="about-profile-title" hidden>
+                    <div class="about-section-label">ABOUT / 03</div>
+                    <div class="about-panel-heading">
+                        <h2 id="about-profile-title">作者资料</h2>
+                    </div>
+                    <div class="about-profile-copy">{{ .Content }}</div>
+                    <a class="about-profile-link" href="https://github.com/yangshaozhou" target="_blank" rel="noopener">
+                        <span>查看 GitHub 项目</span><b aria-hidden="true">↗</b>
+                    </a>
+                    <div class="about-stat-grid" aria-label="博客统计">
+                        <div><strong>{{ len $posts }}</strong><span>文章</span></div>
+                        <div><strong>{{ len .Site.Taxonomies.tags }}</strong><span>标签</span></div>
+                        <div><strong>{{ len .Site.Taxonomies.categories }}</strong><span>分类</span></div>
+                    </div>
+                </section>
+            </div>
         </section>
     </div>
 

@@ -165,3 +165,26 @@ if (photoWall && photoFilters.length > 0) {
 
     if (initialFilter) applyPhotoFilter(initialFilter);
 }
+
+const aboutTabs = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-about-tab]'));
+const aboutPanels = Array.from(document.querySelectorAll<HTMLElement>('[data-about-panel]'));
+
+if (aboutTabs.length > 0 && aboutPanels.length > 0) {
+    const activateAboutTab = (tabName: string) => {
+        aboutTabs.forEach((tab) => {
+            const active = tab.dataset.aboutTab === tabName;
+            tab.classList.toggle('is-active', active);
+            tab.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+
+        aboutPanels.forEach((panel) => {
+            const active = panel.dataset.aboutPanel === tabName;
+            panel.classList.toggle('is-active', active);
+            panel.hidden = !active;
+        });
+    };
+
+    aboutTabs.forEach((tab) => {
+        tab.addEventListener('click', () => activateAboutTab(tab.dataset.aboutTab ?? 'feed'));
+    });
+}

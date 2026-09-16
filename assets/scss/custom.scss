@@ -2961,6 +2961,330 @@ body.template-about {
     }
 }
 
+/* About content: author tabs at left and a visual journal feed at right. */
+.about-content {
+    grid-template-columns: minmax(220px, 0.36fr) minmax(0, 1.64fr);
+    gap: clamp(32px, 5vw, 74px);
+    align-items: start;
+}
+
+.about-sidebar {
+    position: sticky;
+    top: 108px;
+    min-height: 560px;
+    padding-right: clamp(24px, 3vw, 48px);
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.about-sidebar__identity {
+    display: grid;
+    gap: 9px;
+    margin-bottom: 58px;
+}
+
+.about-sidebar__identity img {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 10px;
+    padding: 7px;
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.about-sidebar__identity strong {
+    color: #faf7f1;
+    font-size: 2.1rem;
+    font-weight: 500;
+}
+
+.about-sidebar__identity span {
+    max-width: 190px;
+    color: rgba(255, 255, 255, 0.54);
+    font-size: 1.2rem;
+    line-height: 1.7;
+}
+
+.about-tabs {
+    display: grid;
+    gap: 8px;
+}
+
+.about-tab {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px 0;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+    color: rgba(255, 255, 255, 0.52);
+    background: transparent;
+    font: inherit;
+    font-size: 1.4rem;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.25s ease, padding 0.25s ease;
+}
+
+.about-tab b {
+    color: rgba(255, 255, 255, 0.36);
+    font-size: 1.7rem;
+    font-weight: 400;
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.about-tab:hover,
+.about-tab.is-active {
+    padding-left: 10px;
+    color: #f3c3b7;
+}
+
+.about-tab:hover b,
+.about-tab.is-active b {
+    color: #f3c3b7;
+    transform: translate(3px, -3px);
+}
+
+.about-tab-panel[hidden] {
+    display: none;
+}
+
+.about-panels {
+    min-width: 0;
+}
+
+.about-panel-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.about-panel-heading h2 {
+    margin: 0;
+    color: #faf7f1;
+    font-size: clamp(2.7rem, 4.8vw, 5rem);
+    font-weight: 500;
+    letter-spacing: -0.07em;
+}
+
+.about-panel-heading a {
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.about-panel-heading a:hover {
+    color: #f3c3b7;
+}
+
+.about-feed-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 26px;
+}
+
+.about-feed-card {
+    min-width: 0;
+    color: inherit;
+    text-decoration: none;
+}
+
+.about-feed-card__image {
+    position: relative;
+    height: 330px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #1d2732;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.2);
+    isolation: isolate;
+}
+
+.about-feed-card__image > img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.about-feed-card__shade {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(to bottom, rgba(9, 14, 22, 0.28), transparent 30%, rgba(9, 14, 22, 0.94) 100%);
+}
+
+.about-feed-card__meta,
+.about-feed-card__caption {
+    position: absolute;
+    right: 18px;
+    left: 18px;
+    z-index: 2;
+}
+
+.about-feed-card__meta {
+    top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.about-feed-card__meta span {
+    padding: 6px 11px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    background: rgba(10, 14, 20, 0.25);
+}
+
+.about-feed-card__caption {
+    bottom: 18px;
+}
+
+.about-feed-card__caption h3 {
+    margin: 0 0 8px;
+    color: #fff;
+    font-size: clamp(1.7rem, 2vw, 2.25rem);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.about-feed-card__caption p {
+    display: -webkit-box;
+    overflow: hidden;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 1.2rem;
+    line-height: 1.5;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.about-feed-card:hover .about-feed-card__image > img {
+    filter: saturate(1.1);
+    transform: scale(1.04);
+}
+
+.about-profile-copy {
+    max-width: 680px;
+    margin-top: 34px;
+    color: rgba(232, 227, 219, 0.72);
+    font-size: 1.45rem;
+    line-height: 1.9;
+}
+
+.about-profile-copy p {
+    margin: 0 0 20px;
+}
+
+.about-profile-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.42);
+    color: #f3c3b7;
+    font-size: 1.25rem;
+    text-decoration: none;
+}
+
+.about-profile-link b {
+    font-size: 1.7rem;
+    font-weight: 400;
+}
+
+.about-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 720px;
+    margin-top: 58px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.about-stat-grid div {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 22px 20px 22px 0;
+}
+
+.about-stat-grid div + div {
+    padding-left: 20px;
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.about-stat-grid strong {
+    color: #f3c3b7;
+    font-size: 3rem;
+    font-weight: 400;
+}
+
+.about-stat-grid span {
+    color: rgba(255, 255, 255, 0.52);
+    font-size: 1.2rem;
+}
+
+@media (max-width: 900px) {
+    .about-sidebar {
+        position: static;
+        min-height: 0;
+        padding-right: 0;
+        padding-bottom: 34px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .about-sidebar__identity {
+        margin-bottom: 28px;
+    }
+}
+
+@media (max-width: 600px) {
+    .about-feed-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .about-feed-card__image {
+        height: 300px;
+    }
+
+    .about-panel-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .about-profile-copy {
+        margin-top: 24px;
+        font-size: 1.25rem;
+    }
+
+    .about-stat-grid div {
+        display: grid;
+        gap: 4px;
+        padding-right: 10px;
+    }
+
+    .about-stat-grid div + div {
+        padding-left: 10px;
+    }
+
+    .about-stat-grid strong {
+        font-size: 2.4rem;
+    }
+}
+
 /* Quotes: a quiet index beside a four-card page of selected thoughts. */
 body.template-quotes {
     background-color: var(--body-background);
