@@ -15,11 +15,6 @@
             </header>
 
             <div class="quotes-index__pagination">
-                <div class="quotes-index__pagination-label">
-                    <span>PAGE</span>
-                    <strong>{{ printf "%02d" $paginator.PageNumber }}</strong>
-                    <small>/ {{ printf "%02d" $paginator.TotalPages }}</small>
-                </div>
                 {{ partial "pagination.html" . }}
             </div>
         </aside>

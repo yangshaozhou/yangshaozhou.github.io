@@ -2576,26 +2576,6 @@ body.template-quotes {
     margin-top: 22px;
 }
 
-.quotes-index__pagination-label {
-    display: flex;
-    align-items: baseline;
-    gap: 9px;
-    padding-bottom: 6px;
-    color: var(--card-text-color-tertiary);
-    font-size: 1.1rem;
-    letter-spacing: 0.14em;
-}
-
-.quotes-index__pagination-label strong {
-    color: var(--photos-accent, #e88981);
-    font-size: 1.8rem;
-    font-weight: 500;
-}
-
-.quotes-index__pagination-label small {
-    font-size: 1.1rem;
-}
-
 .quotes-index__pagination .pagination {
     overflow: hidden;
     border-top: 1px solid color-mix(in srgb, var(--card-separator-color) 75%, transparent);
