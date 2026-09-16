@@ -2,7 +2,12 @@
 
 {{ define "main" }}
     {{- $posts := where .Site.RegularPages "Section" "in" .Site.Params.mainSections -}}
-    {{- $latestPosts := first 3 (sort $posts "Date" "desc") -}}
+    {{- $moments := slice
+        (dict "date" "2026-09-16" "mood" "记录" "title" "把日常留在这里" "text" "在星轨之间，继续记录技术、思考与生活。" "image" "images/posts/photo-light.png")
+        (dict "date" "2026-09-12" "mood" "思考" "title" "让复杂回到清晰" "text" "把正在学习的事慢慢整理成可以同行的路径。" "image" "images/posts/explain-complexity.png")
+        (dict "date" "2026-09-08" "mood" "生活" "title" "收集一束光" "text" "不必等待特别的风景，认真看见身边正在发生的事情。" "image" "images/posts/daily-quote.png")
+        (dict "date" "2026-09-01" "mood" "出发" "title" "从一个空仓库开始" "text" "给想法一个可以落地的空间，也给未来留下一点线索。" "image" "images/posts/build-blog.png")
+    -}}
 
     <div class="about-page">
         <section class="about-hero" aria-labelledby="about-hero-title">
@@ -45,24 +50,23 @@
                 <section class="about-tab-panel is-active" id="about-feed-panel" role="tabpanel" data-about-panel="feed" aria-labelledby="about-feed-title">
                     <div class="about-panel-heading">
                         <h2 id="about-feed-title">作者动态</h2>
-                        <a href="{{ "archives/" | relURL }}">全部文章 <span aria-hidden="true">↗</span></a>
                     </div>
                     <div class="about-feed-grid">
-                        {{ range $index, $post := $latestPosts }}
-                            <a class="about-feed-card about-feed-card--{{ mod $index 4 }}" href="{{ $post.RelPermalink }}">
+                        {{ range $index, $moment := $moments }}
+                            <article class="about-feed-card about-feed-card--{{ mod $index 4 }}">
                                 <div class="about-feed-card__image">
-                                    <img src="{{ $post.Params.image | relURL }}" alt="{{ $post.Title }}" loading="lazy" width="960" height="640">
+                                    <img src="{{ $moment.image | relURL }}" alt="{{ $moment.title }}" loading="lazy" width="960" height="640">
                                     <div class="about-feed-card__shade"></div>
                                     <div class="about-feed-card__meta">
-                                        <time datetime="{{ $post.Date.Format "2006-01-02" }}">{{ $post.Date.Format "2006 / 01 / 02" }}</time>
-                                        <span>{{ with $post.Params.categories }}{{ index . 0 }}{{ end }}</span>
+                                        <time datetime="{{ $moment.date }}">{{ replace $moment.date "-" " / " }}</time>
+                                        <span>{{ $moment.mood }}</span>
                                     </div>
                                     <div class="about-feed-card__caption">
-                                        <h3>{{ $post.Title }}</h3>
-                                        <p>{{ $post.Summary | plainify | truncate 92 }}</p>
+                                        <h3>{{ $moment.title }}</h3>
+                                        <p>{{ $moment.text }}</p>
                                     </div>
                                 </div>
-                            </a>
+                            </article>
                         {{ end }}
                     </div>
                 </section>
@@ -72,14 +76,37 @@
                     <div class="about-panel-heading">
                         <h2 id="about-profile-title">作者资料</h2>
                     </div>
-                    <div class="about-profile-copy">{{ .Content }}</div>
-                    <a class="about-profile-link" href="https://github.com/yangshaozhou" target="_blank" rel="noopener">
-                        <span>查看 GitHub 项目</span><b aria-hidden="true">↗</b>
-                    </a>
-                    <div class="about-stat-grid" aria-label="博客统计">
-                        <div><strong>{{ len $posts }}</strong><span>文章</span></div>
-                        <div><strong>{{ len .Site.Taxonomies.tags }}</strong><span>标签</span></div>
-                        <div><strong>{{ len .Site.Taxonomies.categories }}</strong><span>分类</span></div>
+                    <div class="about-profile-grid">
+                        <article class="about-info-card about-info-card--wide">
+                            <h3>简述</h3>
+                            <div class="about-profile-copy">{{ .Content }}</div>
+                            <a class="about-profile-link" href="https://github.com/yangshaozhou" target="_blank" rel="noopener">
+                                <span>查看 GitHub 项目</span><b aria-hidden="true">↗</b>
+                            </a>
+                        </article>
+                        <article class="about-info-card">
+                            <h3>生涯</h3>
+                            <dl><div><dt>方向</dt><dd>技术学习</dd></div><div><dt>方式</dt><dd>项目实践</dd></div></dl>
+                        </article>
+                        <article class="about-info-card">
+                            <h3>人生</h3>
+                            <dl><div><dt>角色</dt><dd>记录者</dd></div><div><dt>信念</dt><dd>保持好奇</dd></div></dl>
+                        </article>
+                        <article class="about-info-card">
+                            <h3>类型</h3>
+                            <dl><div><dt>主题</dt><dd>技术 · 思考</dd></div><div><dt>空间</dt><dd>个人博客</dd></div></dl>
+                        </article>
+                        <article class="about-info-card">
+                            <h3>数据</h3>
+                            <dl><div><dt>发表文章</dt><dd>{{ len $posts }} 篇</dd></div><div><dt>内容分类</dt><dd>{{ len .Site.Taxonomies.categories }} 类</dd></div></dl>
+                        </article>
+                        <article class="about-info-card about-info-card--mood">
+                            <h3>最近的心情能量</h3>
+                            <div class="about-mood-track" aria-label="最近的心情能量：平静、专注、愉快">
+                                <span></span><i></i><i></i><i></i><b></b>
+                            </div>
+                            <div class="about-mood-labels"><span>平静</span><span>专注</span><span>愉快</span></div>
+                        </article>
                     </div>
                 </section>
             </div>

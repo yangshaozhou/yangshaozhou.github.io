@@ -2961,6 +2961,147 @@ body.template-about {
     }
 }
 
+/* About profile: translucent information cards in the author资料 tab. */
+.about-profile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 28px;
+}
+
+.about-info-card {
+    min-width: 0;
+    min-height: 190px;
+    padding: 24px 26px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 18px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.035));
+}
+
+.about-info-card--wide,
+.about-info-card--mood {
+    grid-column: 1 / -1;
+}
+
+.about-info-card h3 {
+    margin: 0 0 20px;
+    color: #faf7f1;
+    font-size: 1.65rem;
+    font-weight: 500;
+}
+
+.about-info-card dl {
+    display: grid;
+    gap: 15px;
+    margin: 0;
+}
+
+.about-info-card dl div {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about-info-card dt {
+    color: rgba(255, 255, 255, 0.48);
+    font-size: 1.1rem;
+}
+
+.about-info-card dd {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1.2rem;
+    text-align: right;
+}
+
+.about-info-card .about-profile-copy {
+    max-width: 760px;
+    margin-top: 0;
+    font-size: 1.3rem;
+}
+
+.about-info-card .about-profile-copy p {
+    margin-bottom: 12px;
+}
+
+.about-info-card .about-profile-link {
+    margin-top: 4px;
+}
+
+.about-mood-track {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+    margin: 20px 8px 12px;
+}
+
+.about-mood-track::before {
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: 2px;
+    content: "";
+    background: linear-gradient(90deg, #f3c3b7, #8b6ac8, #f3c3b7);
+    opacity: 0.65;
+}
+
+.about-mood-track span,
+.about-mood-track i,
+.about-mood-track b {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 13px;
+    height: 13px;
+    border: 2px solid #13171d;
+    border-radius: 50%;
+    background: #f3c3b7;
+}
+
+.about-mood-track i:nth-of-type(1) {
+    background: #8b6ac8;
+}
+
+.about-mood-track i:nth-of-type(2) {
+    background: #f3c3b7;
+}
+
+.about-mood-track i:nth-of-type(3) {
+    background: #8b6ac8;
+}
+
+.about-mood-track b {
+    width: 16px;
+    height: 16px;
+    background: #f3c3b7;
+}
+
+.about-mood-labels {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.05rem;
+}
+
+@media (max-width: 600px) {
+    .about-profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-info-card--wide,
+    .about-info-card--mood {
+        grid-column: auto;
+    }
+
+    .about-info-card {
+        min-height: 0;
+    }
+}
+
 /* About content: author tabs at left and a visual journal feed at right. */
 .about-content {
     grid-template-columns: minmax(220px, 0.36fr) minmax(0, 1.64fr);
