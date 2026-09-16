@@ -2976,35 +2976,6 @@ body.template-about {
     border-right: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.about-sidebar__identity {
-    display: grid;
-    gap: 9px;
-    margin-bottom: 58px;
-}
-
-.about-sidebar__identity img {
-    width: 72px;
-    height: 72px;
-    margin-bottom: 10px;
-    padding: 7px;
-    border: 1px solid rgba(255, 255, 255, 0.32);
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.08);
-}
-
-.about-sidebar__identity strong {
-    color: #faf7f1;
-    font-size: 2.1rem;
-    font-weight: 500;
-}
-
-.about-sidebar__identity span {
-    max-width: 190px;
-    color: rgba(255, 255, 255, 0.54);
-    font-size: 1.2rem;
-    line-height: 1.7;
-}
-
 .about-tabs {
     display: grid;
     gap: 8px;
@@ -3244,9 +3215,6 @@ body.template-about {
         border-bottom: 1px solid rgba(255, 255, 255, 0.18);
     }
 
-    .about-sidebar__identity {
-        margin-bottom: 28px;
-    }
 }
 
 @media (max-width: 600px) {

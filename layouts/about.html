@@ -31,12 +31,6 @@
 
         <section class="about-content" aria-label="作者动态与作者资料">
             <aside class="about-sidebar">
-                <div class="about-sidebar__identity">
-                    <img src="{{ "images/avatar.svg" | relURL }}" alt="杨少洲的头像">
-                    <strong>杨少洲</strong>
-                    <span>在星轨之间，记录脚下的路迹。</span>
-                </div>
-                <div class="about-section-label">AUTHOR / 01</div>
                 <div class="about-tabs" role="tablist" aria-label="作者内容切换">
                     <button class="about-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="about-feed-panel" data-about-tab="feed">
                         <span>作者动态</span><b aria-hidden="true">↗</b>
@@ -49,7 +43,6 @@
 
             <div class="about-panels">
                 <section class="about-tab-panel is-active" id="about-feed-panel" role="tabpanel" data-about-panel="feed" aria-labelledby="about-feed-title">
-                    <div class="about-section-label">THE JOURNAL / 02</div>
                     <div class="about-panel-heading">
                         <h2 id="about-feed-title">作者动态</h2>
                         <a href="{{ "archives/" | relURL }}">全部文章 <span aria-hidden="true">↗</span></a>
