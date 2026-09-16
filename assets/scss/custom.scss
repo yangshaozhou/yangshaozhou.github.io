@@ -2650,23 +2650,6 @@ body.template-about {
     border-radius: 50%;
 }
 
-.about-hero__keywords {
-    position: absolute;
-    right: clamp(28px, 8vw, 128px);
-    bottom: clamp(76px, 10vh, 120px);
-    display: flex;
-    gap: 10px;
-    color: rgba(255, 255, 255, 0.76);
-    font-size: 1.2rem;
-}
-
-.about-hero__keywords span {
-    padding: 8px 14px;
-    border: 1px solid rgba(255, 255, 255, 0.24);
-    border-radius: 999px;
-    background: rgba(10, 14, 20, 0.24);
-}
-
 .about-hero__scroll {
     position: absolute;
     bottom: 28px;
@@ -2877,11 +2860,6 @@ body.template-about {
         right: 8vw;
     }
 
-    .about-hero__keywords {
-        position: static;
-        margin-top: 36px;
-    }
-
     .about-content {
         grid-template-columns: 1fr;
     }
@@ -2925,13 +2903,6 @@ body.template-about {
         right: 24px;
         width: 78px;
         height: 78px;
-    }
-
-    .about-hero__keywords {
-        flex-wrap: wrap;
-        gap: 7px;
-        margin-top: 24px;
-        font-size: 1.05rem;
     }
 
     .about-hero__scroll {
