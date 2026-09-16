@@ -1,6 +1,7 @@
 ---
 title: "关于我"
 description: "关于杨少洲"
+layout: "about"
 ---
 
 你好，我是杨少洲。

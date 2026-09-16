@@ -1,0 +1,84 @@
+{{ define "body-class" }}template-about{{ end }}
+
+{{ define "main" }}
+    {{- $posts := where .Site.RegularPages "Section" "in" .Site.Params.mainSections -}}
+    {{- $latestPosts := first 3 (sort $posts "Date" "desc") -}}
+
+    <div class="about-page">
+        <section class="about-hero" aria-labelledby="about-hero-title">
+            <div class="about-hero__backdrop" aria-hidden="true"></div>
+            <div class="about-hero__glow" aria-hidden="true"></div>
+            <div class="about-hero__topline">
+                <span>PERSONAL SPACE</span>
+                <span>EST. 2026</span>
+            </div>
+
+            <div class="about-hero__identity">
+                <p class="about-hero__eyebrow">HELLO, WORLD / ABOUT</p>
+                <h1 id="about-hero-title">你好，<br><em>我是</em> 杨少洲</h1>
+                <p class="about-hero__lede">在星轨之间，记录技术、思考与生活。</p>
+            </div>
+
+            <div class="about-hero__portrait">
+                <img src="{{ "images/avatar.svg" | relURL }}" alt="杨少洲的头像">
+            </div>
+
+            <div class="about-hero__keywords" aria-label="个人方向">
+                <span>技术实践</span>
+                <span>项目记录</span>
+                <span>个人思考</span>
+            </div>
+
+            <div class="about-hero__scroll" aria-hidden="true">
+                <span>SCROLL TO EXPLORE</span>
+                <i></i>
+            </div>
+        </section>
+
+        <section class="about-content" aria-label="个人资料与近期记录">
+            <div class="about-profile-panel">
+                <div class="about-section-label">ABOUT / 01</div>
+                <h2>关于我</h2>
+                <div class="about-profile-panel__copy">{{ .Content }}</div>
+                <a class="about-profile-panel__link" href="https://github.com/yangshaozhou" target="_blank" rel="noopener">
+                    <span>查看 GitHub 项目</span>
+                    <b aria-hidden="true">↗</b>
+                </a>
+            </div>
+
+            <div class="about-records-panel">
+                <div class="about-section-label">THE JOURNAL / 02</div>
+                <div class="about-records-panel__header">
+                    <h2>最近的记录</h2>
+                    <a href="{{ "archives/" | relURL }}">全部文章 <span aria-hidden="true">↗</span></a>
+                </div>
+
+                <div class="about-records">
+                    {{ range $index, $post := $latestPosts }}
+                        <a class="about-record" href="{{ $post.RelPermalink }}">
+                            <span class="about-record__index">0{{ add $index 1 }}</span>
+                            <span class="about-record__body">
+                                <time datetime="{{ $post.Date.Format "2006-01-02" }}">{{ $post.Date.Format "2006 / 01 / 02" }}</time>
+                                <strong>{{ $post.Title }}</strong>
+                                <span>{{ $post.Summary | plainify | truncate 86 }}</span>
+                            </span>
+                            <span class="about-record__arrow" aria-hidden="true">↗</span>
+                        </a>
+                    {{ end }}
+                </div>
+            </div>
+
+            <aside class="about-stats-panel" aria-label="博客统计">
+                <div class="about-section-label">A FEW NUMBERS / 03</div>
+                <div class="about-stats">
+                    <div><strong>{{ len $posts }}</strong><span>文章</span></div>
+                    <div><strong>{{ len .Site.Taxonomies.tags }}</strong><span>标签</span></div>
+                    <div><strong>{{ len .Site.Taxonomies.categories }}</strong><span>分类</span></div>
+                </div>
+                <p>持续记录正在发生的事，也记录那些值得回看的瞬间。</p>
+            </aside>
+        </section>
+    </div>
+
+    {{ partialCached "footer/footer" . }}
+{{ end }}
