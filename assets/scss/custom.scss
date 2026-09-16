@@ -2537,17 +2537,12 @@ body.template-quotes {
     text-align: center;
 }
 
-.quotes-index__title p,
 .quotes-wall-section__header p {
     margin: 0 0 8px;
     color: var(--card-text-color-tertiary);
     font-size: 1.1rem;
     font-weight: 700;
     letter-spacing: 0.16em;
-}
-
-.quotes-index__title p {
-    margin: 6px 0 0;
 }
 
 .quotes-index__title h1,
@@ -2570,9 +2565,9 @@ body.template-quotes {
 
 .quotes-index__intro {
     max-width: 230px;
-    margin: 0 auto;
+    margin: 10px auto 0;
     color: var(--card-text-color-secondary);
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     line-height: 1.65;
     text-align: center;
 }
