@@ -2553,10 +2553,16 @@ body.template-quotes {
     letter-spacing: -0.04em;
 }
 
-.quotes-index__header strong {
+.quotes-index__heading {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.quotes-index__heading strong {
     position: absolute;
-    top: calc(50% - 38px);
-    right: clamp(4px, 1vw, 14px);
+    top: -9px;
+    right: -30px;
     color: var(--photos-accent, #e88981);
     font-size: 2rem;
     font-weight: 500;

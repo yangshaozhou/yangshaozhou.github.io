@@ -8,10 +8,12 @@
         <aside class="quotes-index" aria-label="箴言索引">
             <header class="quotes-index__header">
                 <div class="quotes-index__title">
-                    <h1>箴言</h1>
+                    <div class="quotes-index__heading">
+                        <h1>箴言</h1>
+                        <strong>{{ len $quotes }}</strong>
+                    </div>
                     <p class="quotes-index__intro">把值得记住的话留在这里，让每次翻阅都重新获得一点力量。</p>
                 </div>
-                <strong>{{ len $quotes }}</strong>
             </header>
 
             <div class="quotes-index__pagination">
