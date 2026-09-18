@@ -1,23 +1,20 @@
 {{ define "hero" }}
-    {{- $posts := where .Site.RegularPages "Section" "in" .Site.Params.mainSections -}}
     <section class="home-reference-intro">
         <div class="home-reference-intro__inner">
             <p class="home-reference-intro__eyebrow">PERSONAL KNOWLEDGE BASE</p>
             <h1>{{ .Site.Title }}</h1>
             <p class="home-reference-intro__description">记录技术实践、学习笔记、照片和生活中的思考。</p>
-            <div class="home-reference-stats" aria-label="博客统计">
-                <a href="{{ "posts/" | relURL }}"><strong>{{ len $posts }}</strong><span>文章</span></a>
-                <a href="{{ "tags/" | relURL }}"><strong>{{ len .Site.Taxonomies.tags }}</strong><span>标签</span></a>
-                <a href="{{ "categories/" | relURL }}"><strong>{{ len .Site.Taxonomies.categories }}</strong><span>分类</span></a>
-            </div>
         </div>
+        <button class="home-scroll-cue" type="button" data-scroll-home aria-controls="home-main" aria-label="向下查看首页内容">
+            <span class="home-scroll-cue__triangle" aria-hidden="true"></span>
+        </button>
     </section>
 {{ end }}
 
 {{ define "main" }}
     {{- $posts := where .Site.RegularPages "Section" "in" .Site.Params.mainSections -}}
     {{- $posts = first 10 (sort $posts "Date" "desc") -}}
-    <section class="home-reference-feed">
+    <section class="home-reference-feed" id="home-main">
         <header class="home-reference-feed__header">
             <div>
                 <p>CONTENTS</p>

@@ -120,6 +120,19 @@ if (colorSchemeToggle) {
     window.addEventListener('onColorSchemeChange', syncColorSchemeLabel);
 }
 
+const homeScrollCue = document.querySelector<HTMLButtonElement>('[data-scroll-home]');
+const homeMain = document.getElementById('home-main');
+
+if (homeScrollCue && homeMain) {
+    homeScrollCue.addEventListener('click', () => {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        homeMain.scrollIntoView({
+            behavior: prefersReducedMotion ? 'auto' : 'smooth',
+            block: 'start',
+        });
+    });
+}
+
 const photoWall = document.querySelector<HTMLElement>('[data-photo-wall]');
 const photoFilters = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-photo-filter]'));
 const photoEmpty = document.querySelector<HTMLElement>('[data-photo-empty]');
