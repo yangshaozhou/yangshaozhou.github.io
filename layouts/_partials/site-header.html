@@ -10,7 +10,7 @@
                 {{- $currentPage := . -}}
                 {{- range .Site.Menus.main -}}
                     {{- $active := or (eq $currentPage.RelPermalink .URL) (or ($currentPage.HasMenuCurrent "main" .) ($currentPage.IsMenuCurrent "main" .)) -}}
-                    <li{{ if $active }} class="current"{{ end }}>
+                    <li{{ if $active }} class="current"{{ end }} data-nav-icon="{{ .Params.icon | default "default" }}">
                         <a href="{{ .URL }}"{{ if .Params.newTab }} target="_blank" rel="noopener"{{ end }}>
                             {{ with .Params.icon }}{{ partial "helper/icon" . }}{{ end }}
                             <span>{{ .Name }}</span>
