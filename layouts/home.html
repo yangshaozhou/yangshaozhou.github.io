@@ -15,13 +15,6 @@
     {{- $posts := where .Site.RegularPages "Section" "in" .Site.Params.mainSections -}}
     {{- $posts = first 10 (sort $posts "Date" "desc") -}}
     <section class="home-reference-feed" id="home-main">
-        <header class="home-reference-feed__header">
-            <div>
-                <p>CONTENTS</p>
-            </div>
-            <a href="{{ "archives/" | relURL }}">查看归档 <span aria-hidden="true">→</span></a>
-        </header>
-
         <div class="home-reference-post-list">
             {{ range $posts }}
                 <article class="home-reference-post">
@@ -43,8 +36,4 @@
             {{ end }}
         </div>
     </section>
-{{ end }}
-
-{{ define "right-sidebar" }}
-    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
 {{ end }}

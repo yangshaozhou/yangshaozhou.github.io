@@ -707,8 +707,7 @@ body.homepage-shell .site-topbar {
     text-align: center;
 }
 
-.home-reference-intro__eyebrow,
-.home-reference-feed__header p {
+.home-reference-intro__eyebrow {
     margin: 0 0 10px;
     color: var(--card-text-color-tertiary);
     font-size: 1.2rem;
@@ -785,36 +784,13 @@ body.homepage-shell .site-topbar {
 
 .home-reference-feed {
     position: relative;
-    border-radius: 24px;
-    background: color-mix(in srgb, var(--card-background) 70%, transparent);
-    backdrop-filter: blur(14px);
-    box-shadow: var(--shadow-l1);
-    overflow: hidden;
-}
-
-.home-reference-feed__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-    padding: 26px 32px 20px;
-    border-bottom: 1px solid var(--card-separator-color);
+    background: transparent;
 }
 
 .home-reference-post-list {
     display: grid;
     gap: 18px;
-    padding: 22px 30px 30px;
-}
-
-.home-reference-feed__header a {
-    color: var(--card-text-color-secondary);
-    font-size: 1.4rem;
-    text-decoration: none;
-}
-
-.home-reference-feed__header a:hover {
-    color: var(--accent-color);
+    padding: 30px 0;
 }
 
 .home-reference-post {
@@ -1901,14 +1877,9 @@ body.template-archives {
         font-size: 1.55rem;
     }
 
-    .home-reference-feed__header {
-        padding-right: 20px;
-        padding-left: 20px;
-    }
-
     .home-reference-post-list {
         gap: 14px;
-        padding: 18px 16px 22px;
+        padding: 18px 0 22px;
     }
 
     .home-reference-post {
