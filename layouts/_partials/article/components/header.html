@@ -1,0 +1,66 @@
+{{- $Page := .Page -}}
+{{- $image := partial "helper/image" (dict "Image" $Page.Params.image "Resources" $Page.Resources "Context" $Page) -}}
+<header class="article-header article-header--hero">
+    <div class="article-hero">
+        <div class="article-hero__media">
+            {{ if $image }}
+                {{ partial "helper/responsive-image" (dict
+                    "Resource" $image.Resource
+                    "Widths" (cond $Page.Site.Params.ImageProcessing.Content.Enabled $Page.Site.Params.ImageProcessing.Content.Widths nil)
+                    "Attributes" (dict
+                        "src" ($Page.Params.image | relURL)
+                        "width" $image.Width
+                        "height" $image.Height
+                        "alt" (printf "Featured image of post %s" $Page.Title)
+                        "loading" "eager"
+                        "sizes" "100vw"
+                    )
+                ) }}
+            {{ end }}
+        </div>
+        <div class="article-hero__scrim" aria-hidden="true"></div>
+
+        <div class="article-hero__details">
+            <div class="article-details article-details--hero">
+                {{ if $Page.Params.categories }}
+                    <div class="article-category">
+                        {{ range ($Page.GetTerms "categories") }}
+                            {{ $color := partial "helper/color-from-str" .LinkTitle }}
+                            {{ $backgroundColor := default $color.BackgroundColor .Params.style.background }}
+                            {{ $textColor := default $color.TextColor .Params.style.color }}
+                            <a href="{{ .RelPermalink }}" style="background-color: {{ $backgroundColor | safeCSS }}; color: {{ $textColor | safeCSS }};">{{ .LinkTitle }}</a>
+                        {{ end }}
+                    </div>
+                {{ end }}
+
+                <div class="article-title-wrapper">
+                    <h1 class="article-title" id="article-title">{{ $Page.Title }}</h1>
+                    {{ with $Page.Params.subtitle }}
+                        <p class="article-subtitle">{{ . }}</p>
+                    {{ end }}
+                </div>
+
+                <div class="article-meta">
+                    <div class="inline-meta">
+                        {{ partial "helper/icon" "date" }}
+                        <time datetime="{{ $Page.Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ $Page.Date | time.Format $Page.Site.Params.dateFormat.published }}</time>
+                    </div>
+                    {{ if $Page.Site.Params.article.readingTime }}
+                        <div class="inline-meta">
+                            {{ partial "helper/icon" "clock" }}
+                            <time>{{ T "article.readingTime" $Page.ReadingTime }}</time>
+                        </div>
+                    {{ end }}
+                    {{ with ($Page.GetTerms "tags") }}
+                        <div class="article-tags inline-meta">
+                            {{ partial "helper/icon" "tag" }}
+                            {{ range . }}
+                                <a href="{{ .RelPermalink }}" class="link">{{ .LinkTitle }}</a>
+                            {{ end }}
+                        </div>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

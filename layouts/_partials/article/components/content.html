@@ -1,0 +1,6 @@
+<section class="article-content md-editor">
+    <div class="md-editor-preview smart-blue-theme">
+        {{ $wrappedTable := printf "<div class=\"table-wrapper\">${1}</div>" }}
+        {{ .Content | replaceRE "(<table>(?:.|\n)+?</table>)" $wrappedTable | safeHTML }}
+    </div>
+</section>

@@ -1,0 +1,39 @@
+{{ define "body-class" }}
+    article-page article-page--editorial
+    {{- $hasTOC := ge (len .TableOfContents) 100 -}}
+    {{- .Scratch.Set "TOCEnabled" $hasTOC -}}
+    {{- .Scratch.Set "hasWidget" $hasTOC -}}
+{{ end }}
+
+{{ define "main" }}
+    {{ partial "article/article.html" . }}
+
+    {{ if .Params.links }}
+        {{ partial "article/components/links" . }}
+    {{ end }}
+
+    {{ partial "article/components/related-content" . }}
+
+    {{ if not (eq .Params.comments false) }}
+        {{ partial "comments/include" . }}
+    {{ end }}
+
+    {{ partialCached "footer/footer" . }}
+
+    {{ partialCached "article/components/photoswipe" . }}
+    {{ partial "article/components/mermaid" . }}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ if .Scratch.Get "TOCEnabled" }}
+        <aside class="sidebar right-sidebar sticky article-toc-sidebar" aria-label="文章目录">
+            <section class="article-toc-panel">
+                <p class="article-toc-panel__eyebrow">ON THIS PAGE</p>
+                <h2>文章目录</h2>
+                <nav class="toc-nav" id="TableOfContents">
+                    {{ partial "article/components/toc" . | safeHTML }}
+                </nav>
+            </section>
+        </aside>
+    {{ end }}
+{{ end }}
